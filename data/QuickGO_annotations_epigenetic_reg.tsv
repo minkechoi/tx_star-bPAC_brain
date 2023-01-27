@@ -1,0 +1,95 @@
+﻿GENE PRODUCT DB	GENE PRODUCT ID	SYMBOL	QUALIFIER	GO TERM	GO NAME	ECO ID	GO EVIDENCE CODE	REFERENCE	WITH/FROM	TAXON ID	ASSIGNED BY	ANNOTATION EXTENSION	GO ASPECT
+UniProtKB	A0A0R4IJ25	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-141205-14	7955	ZFIN		P
+UniProtKB	A0A0R4IJ25	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-191114-6	7955	ZFIN		P
+UniProtKB	A0A0R4IK85	znfx1	involved_in	GO:0031048	RNA-mediated heterochromatin formation	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN000094858|PomBase:SPCC1739.03	7955	GO_Central		P
+UniProtKB	A0A0R4IPD8	znfx1	involved_in	GO:0031048	RNA-mediated heterochromatin formation	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN000094858|PomBase:SPCC1739.03	7955	GO_Central		P
+UniProtKB	A0A1L1QZC7	fam208b	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR046432	7955	InterPro		P
+UniProtKB	A0A2R8PWI2	hat1	involved_in	GO:0031509	subtelomeric heterochromatin formation	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR017380	7955	InterPro		P
+UniProtKB	A0A2R8PZS5	tasorb	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN002701184|UniProtKB:Q9UK61	7955	GO_Central		P
+UniProtKB	A0A2R8PZS5	tasorb	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR046432	7955	InterPro		P
+UniProtKB	A0A2R8Q7B4	pphln1	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN001040035|UniProtKB:Q8NEY8	7955	GO_Central		P
+UniProtKB	A0A2R8Q824	prmt7	involved_in	GO:0006349	regulation of gene expression by genomic imprinting	ECO:0000256	IEA	GO_REF:0000104	UniRule:UR000615760	7955	UniProt		P
+UniProtKB	A0A2R8QAI5	A0A2R8QAI5	involved_in	GO:0040029	epigenetic regulation of gene expression	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR030703	7955	InterPro		P
+UniProtKB	A0A2R8QHR6	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-141205-14	7955	ZFIN		P
+UniProtKB	A0A2R8QHR6	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-191114-6	7955	ZFIN		P
+UniProtKB	A0A2R8QKQ6	rrp8	involved_in	GO:0000183	rDNA heterochromatin formation	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN000980278|UniProtKB:O43159	7955	GO_Central		P
+UniProtKB	A0A2R8QPC0	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-141205-14	7955	ZFIN		P
+UniProtKB	A0A2R8QPC0	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-191114-6	7955	ZFIN		P
+UniProtKB	A0A2R8QPG3	lmna	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	A0A2R8QS35	fam208aa	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN002701184|UniProtKB:Q9UK61	7955	GO_Central		P
+UniProtKB	A0A2R8QS35	fam208aa	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR046432	7955	InterPro		P
+UniProtKB	A0A2R8RM47	ppm1db	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	MGI:MGI:1858214|PANTHER:PTN001014085|UniProtKB:O15297	7955	GO_Central		P
+UniProtKB	A0A2R8RV77	lmnl3	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	A0A2R8RYB8	bahd1	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0052529|PANTHER:PTN008209947|UniProtKB:Q8TBE0	7955	GO_Central		P
+UniProtKB	A0PJQ6	zgc:158260	involved_in	GO:0045815	transcription initiation-coupled chromatin remodeling	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN001667555|UniProtKB:Q6ZV65	7955	GO_Central		P
+UniProtKB	A1A5V1	zgc:158246	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN001040035|UniProtKB:Q8NEY8	7955	GO_Central		P
+UniProtKB	A2ATY1	ppm1db	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	MGI:MGI:1858214|PANTHER:PTN001014085|UniProtKB:O15297	7955	GO_Central		P
+UniProtKB	A2AV36	prmt7	involved_in	GO:0006349	regulation of gene expression by genomic imprinting	ECO:0000250	ISS	GO_REF:0000024	UniProtKB:Q922X9	7955	UniProt		P
+UniProtKB	A5PF35	pphln1	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN001040035|UniProtKB:Q8NEY8	7955	GO_Central		P
+UniProtKB	A5XBQ4	ezh1	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0000629|MGI:MGI:1097695|PANTHER:PTN000768863|UniProtKB:Q10MI4|UniProtKB:Q15910|UniProtKB:Q5VN06	7955	GO_Central		P
+UniProtKB	B3DFN3	lmnb2	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	B3DKC5	wu:fk66d12	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	B3DKD3	lmna	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	B7ZD94	si:ch211-206k20.6	involved_in	GO:0000183	rDNA heterochromatin formation	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN002408692|UniProtKB:Q5T5X7	7955	GO_Central		P
+UniProtKB	B7ZD94	si:ch211-206k20.6	involved_in	GO:0000183	rDNA heterochromatin formation	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR033583	7955	InterPro		P
+UniProtKB	B7ZD95	si:ch211-206k20.6	involved_in	GO:0000183	rDNA heterochromatin formation	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN002408692|UniProtKB:Q5T5X7	7955	GO_Central		P
+UniProtKB	B8JM37	si:ch73-41e3.7	involved_in	GO:0031048	RNA-mediated heterochromatin formation	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN001085504|PomBase:SPAC13G7.07	7955	GO_Central		P
+UniProtKB	B8JMD1	hat1	involved_in	GO:0031509	subtelomeric heterochromatin formation	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR017380	7955	InterPro		P
+UniProtKB	E7EY37	bahd1	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0052529|PANTHER:PTN008209947|UniProtKB:Q8TBE0	7955	GO_Central		P
+UniProtKB	E7EZC0	fam208ab	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN002701184|UniProtKB:Q9UK61	7955	GO_Central		P
+UniProtKB	E7EZC0	fam208ab	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR046432	7955	InterPro		P
+UniProtKB	E7F306	fam208aa	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR046432	7955	InterPro		P
+UniProtKB	E7FFB7	ezh1	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0000629|MGI:MGI:1097695|PANTHER:PTN000768863|UniProtKB:Q10MI4|UniProtKB:Q15910|UniProtKB:Q5VN06	7955	GO_Central		P
+UniProtKB	E7FG09	LOC100331694	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0052529|PANTHER:PTN008209947|UniProtKB:Q8TBE0	7955	GO_Central		P
+UniProtKB	E7FH14	hdac5	involved_in	GO:0040029	epigenetic regulation of gene expression	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR030703	7955	InterPro		P
+UniProtKB	E7FH41	rlim	involved_in	GO:0060816	random inactivation of X chromosome	ECO:0000318	IBA	PMID:21873635	MGI:MGI:1342291|PANTHER:PTN002914536|UniProtKB:Q9NVW2	7955	GO_Central		P
+UniProtKB	E9QCF9	fam208ab	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN002701184|UniProtKB:Q9UK61	7955	GO_Central		P
+UniProtKB	E9QCF9	fam208ab	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR046432	7955	InterPro		P
+UniProtKB	E9QCX6	lmnb1	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	E9QIC9	lmnb1	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	F1Q5F3	lmnb1	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	F1QAP0	si:ch211-204d2.5	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR046432	7955	InterPro		P
+UniProtKB	F1QHC4	lmnb1	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	F1QJX3	wbp2	involved_in	GO:0045815	transcription initiation-coupled chromatin remodeling	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR033598	7955	InterPro		P
+UniProtKB	F1R692	si:ch211-149e23.3	involved_in	GO:0000183	rDNA heterochromatin formation	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN000980278|UniProtKB:O43159	7955	GO_Central		P
+UniProtKB	F1RET2	smyd5	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	MGI:MGI:108048|PANTHER:PTN005302559	7955	GO_Central		P
+UniProtKB	F1RET2	smyd5	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000250	ISS	GO_REF:0000024	UniProtKB:Q3TYX3	7955	UniProt		P
+UniProtKB	F6NMB1	lmnl3	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	F6NTB4	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-141205-14	7955	ZFIN		P
+UniProtKB	F6NTB4	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-191114-6	7955	ZFIN		P
+UniProtKB	F6PBX5	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-141205-14	7955	ZFIN		P
+UniProtKB	F6PBX5	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-191114-6	7955	ZFIN		P
+UniProtKB	F8W619	ezh1	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0000629|MGI:MGI:1097695|PANTHER:PTN000768863|UniProtKB:Q10MI4|UniProtKB:Q15910|UniProtKB:Q5VN06	7955	GO_Central		P
+UniProtKB	H0WFF5	pphln1	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN001040035|UniProtKB:Q8NEY8	7955	GO_Central		P
+UniProtKB	Q08BS4	ezh2	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0000629|MGI:MGI:1097695|PANTHER:PTN000768863|UniProtKB:Q10MI4|UniProtKB:Q15910|UniProtKB:Q5VN06	7955	GO_Central		P
+UniProtKB	Q08BS4	ezh2	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000250	ISS	GO_REF:0000024	UniProtKB:Q15910	7955	UniProt		P
+UniProtKB	Q1MTE3	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-141205-14	7955	ZFIN		P
+UniProtKB	Q1MTE3	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-191114-6	7955	ZFIN		P
+UniProtKB	Q29RB7	zgc:136829	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0000629|MGI:MGI:1097695|PANTHER:PTN000768863|UniProtKB:Q10MI4|UniProtKB:Q15910|UniProtKB:Q5VN06	7955	GO_Central		P
+UniProtKB	Q504A3	wbp2	involved_in	GO:0045815	transcription initiation-coupled chromatin remodeling	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR033598	7955	InterPro		P
+UniProtKB	Q5SP51	pphln1	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN001040035|UniProtKB:Q8NEY8	7955	GO_Central		P
+UniProtKB	Q5SP52	pphln1	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN001040035|UniProtKB:Q8NEY8	7955	GO_Central		P
+UniProtKB	Q5SP53	pphln1	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN001040035|UniProtKB:Q8NEY8	7955	GO_Central		P
+UniProtKB	Q5U3H7	zgc:103518	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	MGI:MGI:1858214|PANTHER:PTN001014085|UniProtKB:O15297	7955	GO_Central		P
+UniProtKB	Q66HU5	hat1	involved_in	GO:0031509	subtelomeric heterochromatin formation	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR017380	7955	InterPro		P
+UniProtKB	Q6DGN6	spty2d1	involved_in	GO:0031507	heterochromatin formation	ECO:0000250	ISS	GO_REF:0000024	UniProtKB:Q68D10	7955	UniProt		P
+UniProtKB	Q6NUV5	lmnb1	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	Q6NYW2	ppm1d	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	MGI:MGI:1858214|PANTHER:PTN001014085|UniProtKB:O15297	7955	GO_Central		P
+UniProtKB	Q6P0Z0	fi05a02	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	Q6P949	phf2	involved_in	GO:0045815	transcription initiation-coupled chromatin remodeling	ECO:0000250	ISS	GO_REF:0000024	UniProtKB:Q9WTU0	7955	UniProt		P
+UniProtKB	Q6P9P2	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-141205-14	7955	ZFIN		P
+UniProtKB	Q6P9P2	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-191114-6	7955	ZFIN		P
+UniProtKB	Q6PBL4	zgc:73351	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN002253209|PomBase:SPBC3D6.09	7955	GO_Central		P
+UniProtKB	Q6TV19	dicer1	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-050225-1	7955	ZFIN		P
+UniProtKB	Q7T297	fam172a	involved_in	GO:0031048	RNA-mediated heterochromatin formation	ECO:0000318	IBA	PMID:21873635	PANTHER:PTN001085504|PomBase:SPAC13G7.07	7955	GO_Central		P
+UniProtKB	Q7T3E6	bmi1b	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000250	ISS	GO_REF:0000024	UniProtKB:P35226	7955	UniProt		P
+UniProtKB	Q7ZVN8	ppm1d	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000318	IBA	PMID:21873635	MGI:MGI:1858214|PANTHER:PTN001014085|UniProtKB:O15297	7955	GO_Central		P
+UniProtKB	Q7ZWF7	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-141205-14	7955	ZFIN		P
+UniProtKB	Q7ZWF7	smarca2	involved_in	GO:0031507	heterochromatin formation	ECO:0000315	IMP	PMID:30948728	ZFIN:ZDB-MRPHLNO-191114-6	7955	ZFIN		P
+UniProtKB	Q803N8	wu:fc06g01	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	Q8JIR0	bmi1a	involved_in	GO:0045814	negative regulation of gene expression, epigenetic	ECO:0000250	ISS	GO_REF:0000024	UniProtKB:P35226	7955	UniProt		P
+UniProtKB	Q90XD7	cb948	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	Q90XD8	lmnl3	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	Q9PU57	lamin B1	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	Q9W6T5	lamin B2	involved_in	GO:0031507	heterochromatin formation	ECO:0000318	IBA	PMID:21873635	FB:FBgn0002525|FB:FBgn0010397|PANTHER:PTN001145669	7955	GO_Central		P
+UniProtKB	X1WED5	hdac5	involved_in	GO:0040029	epigenetic regulation of gene expression	ECO:0000256	IEA	GO_REF:0000002	InterPro:IPR030703	7955	InterPro		P
