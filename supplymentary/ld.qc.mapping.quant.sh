@@ -1,15 +1,4 @@
 #!/bin/bash
-#SBATCH --export=ALL # export all environment variables to the batch job
-#SBATCH -D . # set working directory to .
-#SBATCH -p pq # submit to the parallel queue
-#SBATCH --time=10:00:00 # maximum walltime for the job
-#SBATCH -A Research_Project-T112310 # research project to submit under
-#SBATCH --nodes=1 # specify number of nodes
-#SBATCH --ntasks-per-node=16 # specify number of processors per node
-#SBATCH --mem=50G # specify bytes memory to reserve
-#SBATCH --mail-type=END # send email at job completion
-#SBATCH --mail-user=m.choi@exeter.ac.uk # email address
-
 
 module purge
 module load fastp
