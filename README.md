@@ -16,6 +16,7 @@ R package edgeR{Robinson, 2010} was used to quantify the number of reads. DEGs w
 
 
 References
+
 1	Chen, S., Zhou, Y., Chen, Y. & Gu, J. fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics 34, i884-i890 (2018). https://doi.org:10.1093/bioinformatics/bty560
 2	Kim, D., Langmead, B. & Salzberg, S. L. HISAT: a fast spliced aligner with low memory requirements. Nat Methods 12, 357-360 (2015). https://doi.org:10.1038/nmeth.3317
 3	Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25, 2078-2079 (2009). https://doi.org:10.1093/bioinformatics/btp352
