@@ -11,7 +11,7 @@ Outputfiles from Stringtie were transformed for DESeq2 and edgeR by using prepDE
 > python prepDE.py -i gtf.file.list -l 50
 
 
-Downstream and statistical analyzes were performed with R scripts. 
+Downstream and statistical analyzes were performed with R scripts, and files; "gene_count_matrix.csv", and "sample_info.csv".
 R package edgeR{Robinson, 2010} was used to quantify the number of reads. DEGs were determined by which showed more than absolute 2-fold changes (FC) in their expression with under 0.01 of the False discovery rates (FDR). We used a lower fold change threshold (absolute 1.5 FC) for 120 dpf samples because there is no elevation of cortisol in bPAC+ compared to wildtype at 120 dpf. For the functional analyzes, R packages including clusterprofiler{Wu, 2021}, gProfiler2{Raudvere, 2019}, enrichGO{Wu, 2021} and annotation platforms (Chea3{Keenan, 2019}, DisGeNET{Piñero, 2021}) were used. String database{Szklarczyk, 2019} and Cytoscape{Shannon, 2003} were utilized for the protein-protein interaction network. The list of social genes (101 genes) and epigenetic modifiers which are associated with DNA modification (52 genes) and histone modification (365 genes) as well as RNA modification and processing (1886 genes) was obtained from the Gene Ontology Annotation (GOA) database. 
 
 
