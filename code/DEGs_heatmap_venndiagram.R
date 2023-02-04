@@ -279,20 +279,37 @@ deg.sp.sn.dn.list = list(
 )
 
 
+fit.up= euler(deg.sp.sn.up.list, shape="ellipse")
+fit.dn= euler(deg.sp.sn.dn.list, shape="ellipse")
 
-library(venn)
 
+library(ggVennDiagram)
+library(RColorBrewer)
 
-tiff("./figures/s.Fig2A_sp.sn.deg.up.venn6.15x12.tiff", width =12 , height = 12, res = 1200, units = "cm",compression = "lzw")
-#print(deg.all.venn)
-  venn::venn(deg.sp.sn.up.list, ilabels = TRUE, ellipse=T, box=F, zcolor = magma(6), size = 25, cexil = 1.2, cexsn = 1.3)
+tiff("./figures/s.Fig2A_sp.sn.deg.up.venn6.20x20.tiff", width =20 , height = 20, res = 1200, units = "cm",compression = "lzw")
+#
+ggVennDiagram(deg.sp.sn.up.list, label_size = 5, edge_size = 0.5,
+              label_alpha=0.3,label = "count", 
+              set_size = 6 )+
+  #scale_fill_viridis(alpha = 0.3)+
+  scale_fill_distiller(palette = "Reds", direction = 1)+
+  scale_color_brewer(viridis(6,alpha = 0.5))+
+  theme(legend.text=element_text(size=12))
+
 dev.off()
 
 
 
-tiff("./figures/s.Fig2A_sp.sn.deg.dn.venn6.15x12.tiff", width =12 , height = 12, res = 1200, units = "cm",compression = "lzw")
-#print(deg.all.venn)
-  venn::venn(deg.sp.sn.dn.list, ilabels = TRUE,ellipse=T, box=F, zcolor = viridis(6), size = 25, cexil = 1.2, cexsn = 1.3)
+tiff("./figures/s.Fig2A_sp.sn.deg.dn.venn6.20x20.tiff", width =20 , height = 20, res = 1200, units = "cm",compression = "lzw")
+#
+ggVennDiagram(deg.sp.sn.dn.list, label_size = 5, edge_size = 0.5,
+              label_alpha=0.3,label = "count", 
+              set_size = 6 )+
+  #scale_fill_viridis(alpha = 0.3)+
+  scale_fill_distiller(palette = "Blues", direction = 1)+
+  scale_color_brewer(palette = "YlGnBu")+
+  theme(legend.text=element_text(size=12))
+
 dev.off()
 
 
