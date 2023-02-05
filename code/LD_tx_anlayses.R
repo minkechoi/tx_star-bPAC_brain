@@ -1781,7 +1781,7 @@ sig.as.cell[,"source"] ="adult-specific"
 
 sig.cell_type = rbind(sig.tp.cell,sig.as.cell)
 
-write.csv(sig.cell_type,"./outputs/sig.cell_type.csv")
+write.csv(sig.cell_type,"./outputs/s.table9.sig.cell_type.csv")
 
 
 
@@ -1902,7 +1902,7 @@ for (i in 1:75) {
 }
 
 names(LDgene_epi_type)=LDgene_epi
-#write.csv(LDgene_epi,"./outputs/s.table.9_LDgene_epi.csv")
+#write.csv(LDgene_epi,"./outputs/s.table.10_LDgene_epi.csv")
 
 all_sig_epi = unique(c(all_sig_early_epi$zfin_id_symbol,all_sig_ppLD_epi$zfin_id_symbol))
 all_sig_epi_cpm = filter(LD.all.8,zfin_id_symbol %in% all_sig_epi)
@@ -2051,10 +2051,6 @@ s5_dn= s5_pnas %>% filter(FC_pro.diff.WO.acute <0) %>%
 for (i in 5:8) {
   deg = get(paste0("deg.cpm"))
 }
-
-
-#Supplementary table 6: List of significantly regulated acute only transcripts that map to a longlasing DMS (n=254).
-s6_pnas = read.csv("./supplymentary/pnas.1820842116.sd01_st6.csv")
 
 
 
