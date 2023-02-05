@@ -1555,10 +1555,10 @@ write.csv(adult_specific.alt.sig.table,"./outputs/s.table8.adult_specific_all.LD
 
 #human_orthologs
 combi.LD_deg = c(trans_temporal.alt.sig,adult_specific.alt.sig)
-combi.LD_deg.zh = filter(zh.all,zfin_id_symbol %in% combi.LD_deg)
+combi.LD_deg.zh = dplyr::filter(zh.all, zfin_id_symbol %in% combi.LD_deg)
 #write.csv(combi.dis.LD_deg.zh,"./outputs/combi.dis.LD_deg.zh.csv")
 
-####heatmap
+####heatmap trans_temporal.alt.sig
 
 maint.ht.mt = cbind("d6"=LD.all.5$logFC[c(which(LD.all.5$zfin_id_symbol %in% trans_temporal.alt.sig))],
                     "d13"=LD.all.6$logFC[c(which(LD.all.6$zfin_id_symbol %in% trans_temporal.alt.sig))],
@@ -1572,9 +1572,9 @@ row.names(st_sig_tx_1)= LD.all.8$zfin_id_symbol[c(which(LD.all.5$zfin_id_symbol 
 
 hc = hclustfunc(distfunc(st_sig_tx_1))
 ht.label.order = hc$labels[hc$order]
-write(ht.label.order,"./figures/Fig6D_trans_temporal.LD.DEGS2.label.order.txt")
+write(ht.label.order,"./figures/Fig6e_trans_temporal.LD.DEGS2.label.order.txt")
 nrow(maint.ht.mt)#560
-tiff(paste0("./figures/s.Fig6a_trans_temporal.LD.DEGS2.heatmap_",nrow(st_sig_tx_1) ,".tiff"), height = 7,width = 5, res=1200, units = "cm", compression = "lzw")
+tiff(paste0("./figures/Fig6e_trans_temporal.LD.DEGS2.heatmap_",nrow(st_sig_tx_1) ,".tiff"), height = 7,width = 5, res=1200, units = "cm", compression = "lzw")
 try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
               dendrogram = "row",Colv = F,breaks=breaks,hclustfun=hclustfunc, distfun=distfunc,
               density='density', trace = 'none',
@@ -1590,6 +1590,7 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
 
 dev.off()
 
+#heatmap for adult_specific.alt.sig
 
 adult_specific.ht.mt = cbind("d6"=LD.all.5$logFC[c(which(LD.all.5$zfin_id_symbol %in% adult_specific.alt.sig))],
                      "d13"=LD.all.6$logFC[c(which(LD.all.6$zfin_id_symbol %in% adult_specific.alt.sig))],
@@ -1604,11 +1605,12 @@ row.names(st_sig_tx_1)= LD.all.8$zfin_id_symbol[c(which(LD.all.8$zfin_id_symbol 
 
 hc = hclustfunc(distfunc(st_sig_tx_1))
 ht.label.order = hc$labels[hc$order]
-write(ht.label.order,"./figures/Fig6D_hdden.ELSprimed.LD.DEGS.label.order.txt")
+write(ht.label.order,"./figures/Fig6e_adult_specific.ELSprimed.LD.DEGS.label.order.txt")
 nrow(adult_specific.ht.mt)#69
 
 
-tiff(paste0("./figures/s.Fig6b_hidden.ELSprimed.LD.DEGS.2.heatmap.4x4_",nrow(st_sig_tx_1) ,".tiff"), height = 7,width = 5, res=1200, units = "cm", compression = "lzw")
+tiff(paste0("./figures/Fig6e_adult_specific.ELSprimed.LD.DEGS.2.heatmap.4x4_",nrow(st_sig_tx_1) ,".tiff"),
+     height = 7,width = 5, res=1200, units = "cm", compression = "lzw")
 
 try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
               dendrogram = "row",Colv = F,breaks=breaks,hclustfun=hclustfunc, distfun=distfunc,
@@ -1640,16 +1642,16 @@ row.names(st_sig_tx_1)= c(LD.all.8$zfin_id_symbol[c(which(LD.all.5$zfin_id_symbo
 
 hc = hclustfunc(distfunc(st_sig_tx_1))
 ht.label.order = hc$labels[hc$order]
-write(ht.label.order,"./figures/Fig6D.ELSprimed.LD.DEGS.2.label.order.txt")
+write(ht.label.order,"./figures/Fig6e.ELSprimed.LD.DEGS.2.label.order.txt")
 
 rhc = hclust(dist(st_sig_tx_1, method="euclidean"), method="ward.D2")
-gr.row <- cutree(rhc, 5)
+gr.row <- cutree(rhc, 4)
 tree.table = data.frame("gene" = names(gr.row), "cluster"= gr.row)
-write.csv(tree.table,"./figures/Fig6D.ELSprimed.LD.DEGS.2.cluster.order.csv")
+write.csv(tree.table,"./figures/Fig6e.ELSprimed.LD.DEGS.2.cluster.order.csv")
 
-desturate =viridis(5)
+desturate =viridis(4)
 
-tiff(paste0("./figures/s.Fig6b_ELSprimed.LD.DEGS.2.heatmap.",nrow(st_sig_tx_1) ,".tiff"), height = 10,width = 5, res=1200, units = "cm", compression = "lzw")
+tiff(paste0("./figures/Fig6e_ELSprimed.LD.DEGS.2.heatmap.",nrow(st_sig_tx_1) ,".tiff"), height = 10,width = 5, res=1200, units = "cm", compression = "lzw")
 
 try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
               dendrogram = "row",Colv = F,breaks=breaks,hclustfun=hclustfunc, distfun=distfunc,
@@ -1661,7 +1663,7 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
               cexRow = 1,
               #colsep = 4,
               labCol = c("6","13","120","LD"),
-              RowSideColors=desturate[gr.row],
+              #RowSideColors=desturate[gr.row],
               lwid = c(1,2.5),
               
               #cellnote=adult_specific.ht.FDR,
@@ -1682,6 +1684,104 @@ trans_temporal_sch_dep_aut = tree.table %>%
 trans_temporal_sch_dep_exp.d6 = filter(deg.cpm5,zfin_id_symbol %in% trans_temporal_sch_dep_aut$gene )
 #write.csv(trans_temporal_sch_dep_exp.d6,"./outputs/trans_temporal_sch_dep_exp.d6.csv")
 
+
+###cell type
+
+# load enrichr
+library(reticulate)
+library(plyr)
+os <- import("os")
+os$listdir(".")
+
+json = import("json")
+requests= import("requests")
+
+#get human orthologues
+tt_ld= na.omit(zh.all %>% filter(zfin_id_symbol %in%trans_temporal.alt.sig ))
+tt_ld=unique(tt_ld[,2])
+
+#transtemporal
+ENRICHR_URL = 'https://maayanlab.cloud/Enrichr/addList'
+genes_str = as.character(paste0(tt_ld,collapse = "\n"))
+
+description = 'transtemporal_DEGs'
+
+payload = list('list'= c("None",genes_str),
+            'description'= c("None",description))
+
+response = requests$post(ENRICHR_URL, files=payload)
+
+data = json$loads(response$text)
+print(data)
+
+# get enrichment
+ENRICHR_URL = 'https://maayanlab.cloud/Enrichr/enrich'
+query_string = '?userListId=%s&backgroundType=%s'
+user_list_id = data$userListId
+gene_set_library = 'Tabula_Muris'
+url = paste0(ENRICHR_URL,"?","userListId=",user_list_id,
+             "&backgroundType=",gene_set_library)
+
+response = requests$get(url)
+
+data2 = json$loads(response$text)
+print(data2)
+
+### get_result
+
+#check the ID and modifiy the .py file.
+source_python("./code/enrichr_get_transtemporal_result.py")
+
+# adult_specific
+
+as_ld= na.omit(zh.all %>% filter(zfin_id_symbol %in%adult_specific.alt.sig ))
+as_ld=unique(as_ld[,2])
+
+
+ENRICHR_URL = 'https://maayanlab.cloud/Enrichr/addList'
+genes_str = as.character(paste0(as_ld,collapse = "\n"))
+
+description = 'adult_specific_DEGs'
+
+payload = list('list'= c("None",genes_str),
+               'description'= c("None",description))
+
+response = requests$post(ENRICHR_URL, files=payload)
+
+data = json$loads(response$text)
+print(data)
+
+# get enrichment
+ENRICHR_URL = 'https://maayanlab.cloud/Enrichr/enrich'
+query_string = '?userListId=%s&backgroundType=%s'
+user_list_id = data$userListId
+gene_set_library = 'Tabula_Muris'
+url = paste0(ENRICHR_URL,"?","userListId=",user_list_id,
+             "&backgroundType=",gene_set_library)
+
+response = requests$get(url)
+
+data2 = json$loads(response$text)
+print(data2)
+
+### get_result
+
+source_python("./code/enrichr_get_adult_specific_result.py")
+
+
+#read_table
+tp_celltype_enrich = read.table("./outputs/transtemporal_DEGs.txt",sep = "\t",header = T)
+as_celltype_enrich = read.table("./outputs/adult_specific_DEGs.txt",sep = "\t",header = T)
+
+sig.tp.cell= filter(tp_celltype_enrich,Adjusted.P.value <0.05)[,c(1,2,3,4,7:9)]
+sig.as.cell= filter(as_celltype_enrich,Adjusted.P.value <0.05)[,c(1,2,3,4,7:9)]
+
+sig.tp.cell[,"source"] ="transtemporal"
+sig.as.cell[,"source"] ="adult-specific"
+
+sig.cell_type = rbind(sig.tp.cell,sig.as.cell)
+
+write.csv(sig.cell_type,"./outputs/sig.cell_type.csv")
 
 
 
