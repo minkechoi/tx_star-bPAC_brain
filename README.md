@@ -24,17 +24,30 @@ For the functional analyzes, R packages including clusterprofiler{Wu, 2021}, gPr
 References
 
 1	Chen, S., Zhou, Y., Chen, Y. & Gu, J. fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics 34, i884-i890 (2018). https://doi.org:10.1093/bioinformatics/bty560
+
 2	Kim, D., Langmead, B. & Salzberg, S. L. HISAT: a fast spliced aligner with low memory requirements. Nat Methods 12, 357-360 (2015). https://doi.org:10.1038/nmeth.3317
+
 3	Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25, 2078-2079 (2009). https://doi.org:10.1093/bioinformatics/btp352
+
 4	Pertea, M., Kim, D., Pertea, G. M., Leek, J. T. & Salzberg, S. L. Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown. Nature Protocols 11, 1650-1667 (2016). https://doi.org:10.1038/nprot.2016.095
+
 5	Team, R. RStudio: Integrated Development for R.  (2020). 
+
 6	Robinson, M. D., McCarthy, D. J. & Smyth, G. K. edgeR: a Bioconductor package for differential expression analysis of digital gene expression data. Bioinformatics 26, 139-140 (2010). https://doi.org:10.1093/bioinformatics/btp616
+
 7	Wu, T. et al. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. The Innovation 2, 100141 (2021). https://doi.org:https://doi.org/10.1016/j.xinn.2021.100141
+
 8	Raudvere, U. et al. g:Profiler: a web server for functional enrichment analysis and conversions of gene lists (2019 update). Nucleic Acids Research 47, W191-W198 (2019). https://doi.org:10.1093/nar/gkz369
+
 9	Keenan, A. B. et al. ChEA3: transcription factor enrichment analysis by orthogonal omics integration. Nucleic Acids Research 47, W212-W224 (2019). https://doi.org:10.1093/nar/gkz446
+
 10	Piñero, J., Saüch, J., Sanz, F. & Furlong, L. I. The DisGeNET cytoscape app: Exploring and visualizing disease genomics data. Computational and Structural Biotechnology Journal 19, 2960-2967 (2021). https://doi.org:https://doi.org/10.1016/j.csbj.2021.05.015
+
 11	Szklarczyk, D. et al. STRING v11: protein–protein association networks with increased coverage, supporting functional discovery in genome-wide experimental datasets. Nucleic Acids Research 47, D607-D613 (2019). https://doi.org:10.1093/nar/gky1131
+
 12	Shannon, P. et al. Cytoscape: a software environment for integrated models of biomolecular interaction networks. Genome Res 13, 2498-2504 (2003). https://doi.org:10.1101/gr.1239303
+
 13  Chen, E. Y. et al. Enrichr: interactive and collaborative HTML5 gene list enrichment analysis tool. BMC Bioinformatics 14, 128 (2013). https://doi.org:10.1186/1471-2105-14-128
+
 14	Schaum, N. et al. Single-cell transcriptomics of 20 mouse organs creates a Tabula Muris. Nature 562, 367-372 (2018). https://doi.org:10.1038/s41586-018-0590-4
 
