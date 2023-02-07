@@ -599,7 +599,7 @@ dev.off()
 
 
 #list of background genes
-for (i in c(4,8:10)){
+for (i in c(8:10)){
   deg = get(paste0("deg.cpm",i))
   deg = deg %>% filter(mean.cpm.pos > 5|mean.cpm.wt >5)
   deg = prot_id_map[deg$zfin_id_symbol, "ENTREZID"]
@@ -648,14 +648,14 @@ gos=c("BP","MF","CC")
 
 for (k in 1:3) {
   ##up
-  try(tc_enrich.up <- clusterProfiler::compareCluster(tc_point_up, fun = "enrichGO",  OrgDb='org.Dr.eg.db', ont = gos[k],
+  tryCatch({
+    tc_enrich.up <- clusterProfiler::compareCluster(tc_point_up, fun = "enrichGO",  OrgDb='org.Dr.eg.db', ont = gos[k],
                                                   bk.all.LD,pvalueCutoff = 0.05,
                                                   pAdjustMethod = "BH",qvalueCutoff = 0.2,
                                                   minGSSize = 10,
                                                   maxGSSize = 600, 
-                                                  readable = TRUE), 
-           silent = T
-  )
+                                                  readable = TRUE)
+           
   tc_enrich.up.tb = data.frame(tc_enrich.up[1:length(tc_enrich.up[]$ID)])
   tc_enrich.up.tb[,"source"]=gos[k]
   
@@ -683,14 +683,13 @@ for (k in 1:3) {
   
   
   ##down
-  try(tc_enrich.dn <- clusterProfiler::compareCluster(tc_point_dn, fun = "enrichGO",  OrgDb='org.Dr.eg.db', ont = gos[k],
+  tc_enrich.dn <- clusterProfiler::compareCluster(tc_point_dn, fun = "enrichGO",  OrgDb='org.Dr.eg.db', ont = gos[k],
                                                   bk.all.LD,pvalueCutoff = 0.05,
                                                   pAdjustMethod = "BH",qvalueCutoff = 0.2,
                                                   minGSSize = 10,
                                                   maxGSSize = 1000, 
-                                                  readable = TRUE), 
-           silent = T
-  )
+                                                  readable = TRUE)
+           
   tc_enrich.dn.tb = data.frame(tc_enrich.dn[1:length(tc_enrich.dn[]$ID)])
   tc_enrich.dn.tb[,"source"]=gos[k]
   
@@ -713,15 +712,14 @@ for (k in 1:3) {
   #filtering
   tc_enrich.dn.tb= tc_enrich.dn.tb %>% filter(Count >= 10) %>% filter(ratio.catg >= 0.05)
   
-  LD.tc_enrich.dn.tb =rbind(LD.tc_enrich.dn.tb, tc_enrich.dn.tb)
-  
-  
+  LD.tc_enrich.dn.tb =rbind(LD.tc_enrich.dn.tb, tc_enrich.dn.tb)}, error=function(e){})
 }
+
 
 #write_combined_table
 
-#write.csv(LD.tc_enrich.up.tb,"./outputs/s.table4a_LD.tc_enrich.up.tb.csv" )
-#write.csv(LD.tc_enrich.dn.tb,"./outputs/s.table4b_LD.tc_enrich.dn.tb.csv" )
+write.csv(LD.tc_enrich.up.tb,"./outputs/s.table4a_LD.tc_enrich.up.tb.csv" )
+write.csv(LD.tc_enrich.dn.tb,"./outputs/s.table4b_LD.tc_enrich.dn.tb.csv" )
 
 
 
@@ -757,12 +755,12 @@ gos=c("BP","MF","CC")
 for (k in 1:3) {
   tryCatch({
   ##up
-  try(tc_enrich.up <- clusterProfiler::compareCluster(tc_point_up, fun = "enrichGO",  OrgDb='org.Dr.eg.db', ont = gos[k],
+  tc_enrich.up <- clusterProfiler::compareCluster(tc_point_up, fun = "enrichGO",  OrgDb='org.Dr.eg.db', ont = gos[k],
                                                   bk.all.LD,pvalueCutoff = 0.05,
                                                   pAdjustMethod = "BH",qvalueCutoff = 0.2,
                                                   minGSSize = 10,
                                                   maxGSSize = 600, 
-                                                  readable = TRUE),silent = T)
+                                                  readable = TRUE)
   
   tc_enrich.up.tb = data.frame(tc_enrich.up[1:length(tc_enrich.up[]$ID)])
   tc_enrich.up.tb[,"source"]<-gos[k]
@@ -790,13 +788,13 @@ for (k in 1:3) {
   
   
   ##down
-  try(tc_enrich.dn <- clusterProfiler::compareCluster(tc_point_dn, fun = "enrichGO",  OrgDb='org.Dr.eg.db', ont = gos[k],
+  tc_enrich.dn <- clusterProfiler::compareCluster(tc_point_dn, fun = "enrichGO",  OrgDb='org.Dr.eg.db', ont = gos[k],
                                                   bk.all.LD,pvalueCutoff = 0.05,
                                                   pAdjustMethod = "BH",qvalueCutoff = 0.2,
                                                   minGSSize = 10,
                                                   maxGSSize = 1000, 
-                                                  readable = TRUE),silent = T
-  )
+                                                  readable = TRUE)
+  
   tc_enrich.dn.tb = data.frame(tc_enrich.dn[1:length(tc_enrich.dn[]$ID)])
   tc_enrich.dn.tb[,"source"]=gos[k]
   
