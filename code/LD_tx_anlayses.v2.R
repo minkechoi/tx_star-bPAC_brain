@@ -302,9 +302,10 @@ LD.deg.list$source= gsub("s.m4-LD",x = LD.deg.list$source ,"DEG2")
 LD.deg.list$source= gsub("t.m4-LD",x = LD.deg.list$source ,"DEG1")
 LD.deg.list$source= gsub("LD",x = LD.deg.list$source ,"DEG3")
 
-
+LD.deg.list
 #s.table3_list of LD-DEGs
-write.csv(LD.deg.list, "./outputs/s.table3_list of LD-DEGs.csv")
+LD.deg.list.table=LD.deg.list[,c(c(7:8,1,2,4,5,9,20:23))]
+write.csv(LD.deg.list.table, "./outputs/s.table3_list of LD-DEGs.csv")
 ####
 #####
 
@@ -751,9 +752,9 @@ all.LD.tc_enrich.dn.tb = data.frame()
 gos=c("BP","MF","CC")
 
 #warning, duplication in the result if there is no result. 
-
+tryCatch({
 for (k in 1:3) {
-  tryCatch({
+  
   ##up
   tc_enrich.up <- clusterProfiler::compareCluster(tc_point_up, fun = "enrichGO",  OrgDb='org.Dr.eg.db', ont = gos[k],
                                                   bk.all.LD,pvalueCutoff = 0.05,
@@ -764,29 +765,14 @@ for (k in 1:3) {
   
   tc_enrich.up.tb = data.frame(tc_enrich.up[1:length(tc_enrich.up[]$ID)])
   tc_enrich.up.tb[,"source"]<-gos[k]
-  
-  a= str_split(tc_enrich.up.tb[,4],pattern = "/")
-  if (length(a)>1) {
-    b= data.frame(Reduce(rbind,a))
-  } else {b= data.frame(a[[1]][1],a[[1]][2])  
-  }  
-  tc_enrich.up.tb[,"n.deg"] = as.numeric(b[,2])
-  
-  a= str_split(tc_enrich.up.tb[,5],pattern = "/")
-  if (length(a)>1) {
-    b= data.frame(Reduce(rbind,a))
-  } else {b= data.frame(a[[1]][1],a[[1]][2])  
-  }  
-  tc_enrich.up.tb[,"gene.in.catg"] = as.numeric(b[,1])
-  
-  tc_enrich.up.tb[,"ratio.catg"] = tc_enrich.up.tb[,10]/tc_enrich.up.tb[,"gene.in.catg"]
-  
-  #filtering
-  tc_enrich.up.tb= tc_enrich.up.tb %>% filter(Count >= 10) %>% filter(ratio.catg >= 0.05)
-  
   all.LD.tc_enrich.up.tb =rbind(all.LD.tc_enrich.up.tb,tc_enrich.up.tb)
   
   
+    }
+  }, error=function(e){})
+  
+  
+for (k in 1:3) {  
   ##down
   tc_enrich.dn <- clusterProfiler::compareCluster(tc_point_dn, fun = "enrichGO",  OrgDb='org.Dr.eg.db', ont = gos[k],
                                                   bk.all.LD,pvalueCutoff = 0.05,
@@ -798,33 +784,59 @@ for (k in 1:3) {
   tc_enrich.dn.tb = data.frame(tc_enrich.dn[1:length(tc_enrich.dn[]$ID)])
   tc_enrich.dn.tb[,"source"]=gos[k]
   
-  a= str_split(tc_enrich.dn.tb[,4],pattern = "/")
-  if (length(a)>1) {
-    b= data.frame(Reduce(rbind,a))
-  } else {b= data.frame(a[[1]][1],a[[1]][2])  
-  }
-  tc_enrich.dn.tb[,"n.deg"] = as.numeric(b[,2])
+ 
   
-  a= str_split(tc_enrich.dn.tb[,5],pattern = "/")
-  if (length(a)>1) {
-    b= data.frame(Reduce(rbind,a))
-  } else {b= data.frame(a[[1]][1],a[[1]][2])  
-  }
-  tc_enrich.dn.tb[,"gene.in.catg"] = as.numeric(b[,1])
+  all.LD.tc_enrich.dn.tb =rbind(all.LD.tc_enrich.dn.tb, tc_enrich.dn.tb) 
+  } 
   
-  tc_enrich.dn.tb[,"ratio.catg"] = c(tc_enrich.dn.tb[,10]/tc_enrich.dn.tb[,"gene.in.catg"])
   
-  #filtering
-  tc_enrich.dn.tb= tc_enrich.dn.tb %>% filter(Count >= 10) %>% filter(ratio.catg >= 0.05)
-  
-  all.LD.tc_enrich.dn.tb =rbind(all.LD.tc_enrich.dn.tb, tc_enrich.dn.tb) } , error=function(e){})
-  
+tryCatch({
+
+a= str_split(all.LD.tc_enrich.up.tb[,4],pattern = "/")
+if (length(a)>1) {
+  b= data.frame(Reduce(rbind,a))
+} else {b= data.frame(a[[1]][1],a[[1]][2])  
+}  
+all.LD.tc_enrich.up.tb[,"n.deg"] = as.numeric(b[,2])
+
+a= str_split(all.LD.tc_enrich.up.tb[,5],pattern = "/")
+if (length(a)>1) {
+  b= data.frame(Reduce(rbind,a))
+} else {b= data.frame(a[[1]][1],a[[1]][2])  
+}  
+all.LD.tc_enrich.up.tb[,"gene.in.catg"] = as.numeric(b[,1])
+
+all.LD.tc_enrich.up.tb[,"ratio.catg"] = all.LD.tc_enrich.up.tb[,10]/all.LD.tc_enrich.up.tb[,"gene.in.catg"]
+
+#filtering
+#all.LD.tc_enrich.up.tb= all.LD.tc_enrich.up.tb %>% filter(Count >= 10) %>% filter(ratio.catg >= 0.05)
+},error=function(e){})
+
+
+a= str_split(all.LD.tc_enrich.dn.tb[,4],pattern = "/")
+if (length(a)>1) {
+  b= data.frame(Reduce(rbind,a))
+} else {b= data.frame(a[[1]][1],a[[1]][2])  
 }
+all.LD.tc_enrich.dn.tb[,"n.deg"] = as.numeric(b[,2])
+
+a= str_split(all.LD.tc_enrich.dn.tb[,5],pattern = "/")
+if (length(a)>1) {
+  b= data.frame(Reduce(rbind,a))
+} else {b= data.frame(a[[1]][1],a[[1]][2])  
+}
+all.LD.tc_enrich.dn.tb[,"gene.in.catg"] = as.numeric(b[,1])
+
+all.LD.tc_enrich.dn.tb[,"ratio.catg"] = c(all.LD.tc_enrich.dn.tb[,10]/all.LD.tc_enrich.dn.tb[,"gene.in.catg"])
+
+#filtering
+all.LD.tc_enrich.dn.tb= all.LD.tc_enrich.dn.tb %>% filter(Count >= 10) %>% filter(ratio.catg >= 0.05)
+
+
 
 #write_combined_table
 
-write.csv(all.LD.tc_enrich.up.tb,"./outputs/s.table4c_all_LD.tc_enrich.up.tb.csv" )
-write.csv(all.LD.tc_enrich.dn.tb,"./outputs/s.table4d_all_LD.tc_enrich.dn.tb.csv" )
+9write.csv(all.LD.tc_enrich.dn.tb,"./outputs/s.table4d_all_LD.tc_enrich.dn.tb.csv" )
 
 
 ######sb_LD
@@ -995,6 +1007,73 @@ write.csv(table.dis.LD.sig,"./outputs/s.table6_DisGeNET_enrichment_DEG12.csv")
 tiff("./figures/Fig6A_top.disgenet_DEG12.tiff", width = 13, height = 12,units = "cm", res = 1200, compression = "lzw")
 plot(res_enrich, class = "Enrichment", count =20,  cutoff= 0.05, nchars=70)
 dev.off()
+
+
+
+#Venn diagram for DEG12
+dis.name= unique(table.dis.LD.sig$Description)
+
+Seizures.genes = unique(c(unlist(str_split(table.dis.LD.sig$shared_symbol[c(which(table.dis.LD.sig$Description %in% dis.name[c(4)]))],pattern = ";"))) )
+schiz.genes = unique(c(unlist(str_split(table.dis.LD.sig$shared_symbol[c(which(table.dis.LD.sig$Description %in% dis.name[c(1)]))],pattern = ";"))) ) 
+auti.genes = unique(c(unlist(str_split(table.dis.LD.sig$shared_symbol[c(which(table.dis.LD.sig$Description %in% dis.name[c(3)]))],pattern = ";"))) ) 
+bipolar.genes = unique(c(unlist(str_split(table.dis.LD.sig$shared_symbol[c(which(table.dis.LD.sig$Description %in% dis.name[c(2)]))],pattern = ";"))) ) 
+
+Seizures.disig.zh = zh.all %>% filter(human.Symbol %in% Seizures.genes)
+schiz.disig.zh = zh.all %>% filter(human.Symbol %in% schiz.genes)
+auti.disig.zh = zh.all %>% filter(human.Symbol %in% auti.genes)
+bipolar.disig.zh = zh.all %>% filter(human.Symbol %in% bipolar.genes)
+
+Seizures.disig.LD = deg.cpm8 %>% filter(zfin_id_symbol %in% intersect(ab.LD.res.deg.gene,unique(Seizures.disig.zh$zfin_id_symbol))) 
+schiz.disig.LD = deg.cpm8 %>% filter(zfin_id_symbol %in% intersect(ab.LD.res.deg.gene,unique(schiz.disig.zh$zfin_id_symbol)))
+auti.disig.LD = deg.cpm8 %>% filter(zfin_id_symbol %in% intersect(ab.LD.res.deg.gene,unique(auti.disig.zh$zfin_id_symbol)))
+bipolar.disig.LD = deg.cpm8 %>% filter(zfin_id_symbol %in% intersect(ab.LD.res.deg.gene,unique(bipolar.disig.zh$zfin_id_symbol)))
+
+###
+
+disig.list = list(
+  "Seizures" = unique(Seizures.disig.LD$zfin_id_symbol),
+  "schizo." = unique(schiz.disig.LD$zfin_id_symbol),
+  "Autistic" = unique(auti.disig.LD$zfin_id_symbol),
+  "bipolar" = unique(bipolar.disig.LD$zfin_id_symbol)
+)
+
+
+library(eulerr)
+
+
+fit4= euler(disig.list,shape = "ellipse") # 10 genes between dep. and schizo. are missing because of the adjustment. manually adjust.
+venncol4 = viridis(4)
+
+disnet.primed.venn =plot(fit4, 
+                      quantities = T,
+                      fill = venncol4, alpha =0.3,
+                      lty = 1,
+                      labels = list(font = 4)
+)
+
+'                                  original fitted residuals regionError
+Seizures                                21 21.001    -0.001       0.000
+schizo.                                 82 82.001    -0.001       0.000
+Autistic                                25 25.002    -0.002       0.000
+bipolar                                 25 25.004    -0.004       0.000
+Seizures&schizo.                         7  6.987     0.013       0.000
+Seizures&Autistic                        2  1.990     0.010       0.000
+Seizures&bipolar                         2  1.949     0.051       0.000
+schizo.&Autistic                         8  7.979     0.021       0.000
+schizo.&bipolar                         24 23.980     0.020       0.000
+Autistic&bipolar                         2  1.933     0.067       0.000
+Seizures&schizo.&Autistic                0  0.275    -0.275       0.001
+Seizures&schizo.&bipolar                 4  4.096    -0.096       0.000
+Seizures&Autistic&bipolar                1  1.089    -0.089       0.000
+schizo.&Autistic&bipolar                 9  9.060    -0.060       0.000
+Seizures&schizo.&Autistic&bipolar        2  1.799     0.201       0.001
+
+diagError: 0.001 
+stress:    0 '
+tiff("./figures/Fig6B_disgnet.primed.venn4.12x12.tiff", height = 12,width = 12, res=1200, units = "cm", compression = "lzw")
+plot(disnet.primed.venn)
+dev.off()
+
 
 # for GC-primed and altered genes
 zh_LD_list= unique(filter(zh.all, zfin_id_symbol %in% c(deg.list$`DEG 1`,deg.list$`DEG 2`,deg.list$`DEG 3`))[,2])
@@ -1562,7 +1641,7 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
 dev.off()
 
 all_dis_LD_deg=rbind(LD.all.disig5,LD.all.disig6,LD.all.disig7,LD.all.disig8)
-#write.csv(all_dis_LD_deg,"./outputs/all_dis_LD_deg.csv")
+write.csv(all_dis_LD_deg,"./outputs/all_dis_LD_deg.csv")
 #write.csv(LD.all.disig7,"./outputs/LD.all.disig7.csv")
 #write.csv(LD.all.disig8,"./outputs/LD.all.disig8.csv")
 
@@ -1572,7 +1651,7 @@ all_dis_LD_deg=rbind(LD.all.disig5,LD.all.disig6,LD.all.disig7,LD.all.disig8)
 #selection
 for (i in c(5:8)) {
   deg = get(paste0("deg.cpm",i))
-  deg = deg %>% filter(zfin_id_symbol %in% unique(c(deg.list$`DEG 1`,deg.list$`DEG 2`,deg.list$`DEG 3`)))
+  deg = deg %>% filter(zfin_id_symbol %in% unique(c(deg12.primed ,deg.list$`DEG 3`)))
   name=paste0("LD.all.",i)
   assign(name,deg)
 }
@@ -1609,9 +1688,10 @@ for (i in 1:nrow(LD.all.8)) {
 
 
 trans_temporal.alt= LD.all.8[c(which(matched.alt ==1)),8]
-trans_temporal.alt.sig = intersect(trans_temporal.alt,main.LD.all.FDR)
+trans_temporal.alt.sig = unique(intersect(trans_temporal.alt,main.LD.all.FDR))
 trans_temporal.alt.sig.table = dplyr::filter(LD.all.8, zfin_id_symbol %in% trans_temporal.alt.sig )
-write.csv(trans_temporal.alt.sig.table, "./outputs/s.table8.trans_temporal_all.LD_DEGs.csv")
+trans_temporal.alt.sig.table[,"class"]="trans-temporal"
+write.csv(trans_temporal.alt.sig.table[,c(7:8,1,2,4,5,9,20:24)], "./outputs/s.table8.trans_temporal_all.LD_DEGs.csv")
 
 adult_specific.alt = c()
 
@@ -1628,7 +1708,8 @@ for (i in 1:nrow(LD.all.8)){
 adult_specific.alt= LD.all.8[c(which(adult_specific.alt == 1)),8]
 adult_specific.alt.sig = intersect(adult_specific.alt,LD.all.8$zfin_id_symbol[c(which(LD.all.8$FDR <0.01))])
 adult_specific.alt.sig.table = dplyr::filter(LD.all.8, zfin_id_symbol %in% adult_specific.alt.sig )
-write.csv(adult_specific.alt.sig.table,"./outputs/s.table8.adult_specific_all.LD_DEGs.csv")
+adult_specific.alt.sig.table[,"class"]="adult-specific"
+write.csv(adult_specific.alt.sig.table[,c(7:8,1,2,4,5,9,20:24)],"./outputs/s.table8.adult_specific_all.LD_DEGs.csv")
 
 #human_orthologs
 combi.LD_deg = c(trans_temporal.alt.sig,adult_specific.alt.sig)
@@ -1752,7 +1833,7 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
 dev.off()
 
 all_LD_deg=rbind(LD.all.5,LD.all.6,LD.all.7,LD.all.8)
-#write.csv(all_dis_LD_deg,"./outputs/all_dis_LD_deg.csv")
+write.csv(all_dis_LD_deg,"./outputs/tt_asp_LD_deg.csv")
 #write.csv(LD.all.7,"./outputs/LD.all.disig7.csv")
 #write.csv(LD.all.8,"./outputs/LD.all.disig8.csv")
 
@@ -1847,8 +1928,8 @@ source_python("./code/enrichr_get_adult_specific_result.py")
 
 
 #read_table
-tp_celltype_enrich = read.table("./outputs/transtemporal_DEGs123.txt",sep = "\t",header = T)
-as_celltype_enrich = read.table("./outputs/adult_specific_DEGs123.txt",sep = "\t",header = T)
+tp_celltype_enrich = read.table("./outputs/transtemporal_DEGs.txt",sep = "\t",header = T)
+as_celltype_enrich = read.table("./outputs/adult_specific_DEGs.txt",sep = "\t",header = T)
 
 sig.tp.cell= filter(tp_celltype_enrich,Adjusted.P.value <0.05)[,c(1,2,3,4,7:9)]
 sig.as.cell= filter(as_celltype_enrich,Adjusted.P.value <0.05)[,c(1,2,3,4,7:9)]
@@ -2051,7 +2132,7 @@ all_sig_ppLD_epi[,"epi"]=c( paste0(DNA_modi_cpm.7$zfin_id_symbol," (DNA_modi.)")
                            paste0(RNA_proc_cpm.7$zfin_id_symbol," (RNA_proc.)"),
                             paste0(RNA_proc_cpm.8$zfin_id_symbol," (RNA_proc.)"))
 LDgene_epi = rbind(all_sig_early_epi,all_sig_ppLD_epi)
-write.csv(LDgene_epi,"./outputs/s.table.9_LDgene_epi.csv")
+write.csv(LDgene_epi[,c(7:8,1,2,4,5,9,20:24)],"./outputs/s.table.12_LDgene_epi.csv")
 LDgene_epi_dict =strsplit(unique(LDgene_epi[,"epi"]),split = " ")
 
 LDgene_epi= c()
@@ -2066,7 +2147,6 @@ for (i in 1:75) {
 }
 
 names(LDgene_epi_type)=LDgene_epi
-#write.csv(LDgene_epi,"./outputs/s.table.10_LDgene_epi.csv")
 
 all_sig_epi = unique(c(all_sig_early_epi$zfin_id_symbol,all_sig_ppLD_epi$zfin_id_symbol))
 all_sig_epi_cpm = filter(LD.all.8,zfin_id_symbol %in% all_sig_epi)
@@ -2196,72 +2276,115 @@ dev.off()
 #Supplementary table 5: List of significantly regulated Pro-diff+WO +acute transcripts that map to a long-lasing DMS (n=702).
 s5_pnas = read.csv("./supplementary/pnas.1820842116.sd01_st5.csv")
 
+s5_pnas.fit= na.omit(s5_pnas[,c(5:7)])
+s5_pnas.fit=filter(s5_pnas.fit, !grepl(",",s5_pnas.fit$Gene_symbol))
+colnames(s5_pnas.fit)=c("human.Symbol","FC","PValue")
 
-#LD
-ft.LD.deg = deg.cpm8 %>% filter(t.test <0.05)%>% filter(FDR <0.05) %>% filter(mean.cpm.pos > 5|mean.cpm.wt >5)
-
-hz_LD_list.up = filter(zh.all,zfin_id_symbol %in% ft.LD.deg$zfin_id_symbol[c(which(ft.LD.deg$logFC > log2(1.3)))])
-hz_LD_list.dn = filter(zh.all,zfin_id_symbol %in% ft.LD.deg$zfin_id_symbol[c(which(ft.LD.deg$logFC < -log2(1.3)))])
-
-
-s5_intLD.up= s5_pnas %>% filter(FC_pro.diff.WO.acute >0) %>% 
-  filter(Gene_symbol%in% unique(hz_LD_list.up$human.Symbol))
-s5_intLD.dn= s5_pnas %>% filter(FC_pro.diff.WO.acute <0) %>% 
-  filter(Gene_symbol%in% unique(hz_LD_list.dn$human.Symbol))
-
-#13
-ft.13.deg = deg.cpm6 %>% filter(t.test <0.05)%>% filter(FDR <0.05) %>%   filter(mean.cpm.pos > 5|mean.cpm.wt >5)
-
-hz_13_list.up = filter(zh.all,zfin_id_symbol %in% 
-                                     ft.13.deg$zfin_id_symbol[c(which(ft.13.deg$logFC > log2(1.3)))])
-hz_13_list.dn = filter(zh.all,zfin_id_symbol %in% 
-                                     ft.13.deg$zfin_id_symbol[c(which(ft.13.deg$logFC < -log2(1.3)))])
+homolog_z= filter(zh.all,human.Symbol %in% unique(s5_pnas.fit$human.Symbol))
+homolog_z=na.omit(homolog_z)
+homolog_z[,"key"]= paste0(homolog_z$human.Symbol,"_",homolog_z$zfin_id_symbol)
+d=duplicated(homolog_z$key)
+homolog_z=homolog_z[!d,]
+homolog_z=na.omit(homolog_z)
 
 
-s5_intd13.up= s5_pnas %>% filter(FC_pro.diff.WO.acute >0) %>% 
-  filter(Gene_symbol%in% hz_13_list.up$human.Symbol)
-s5_intd13.dn= s5_pnas %>% filter(FC_pro.diff.WO.acute <0) %>% 
-  filter(Gene_symbol%in% hz_13_list.dn$human.Symbol)
+library(plyr)
 
 
-s5_up_list = list(
-  "overlap_d13" = unique(s5_intd13.up$Gene_symbol),
-  "overlap_LD" = unique(s5_intLD.up$Gene_symbol)
-)
+logfc2fc <- function(logFC){
+  # sign is -1 if logFC<0; 1 if logFC>=0
+  sgn <- (-1)^(1+as.numeric(logFC>=0))
+  fc <- sgn*2^abs(logFC)
+  return(fc)
+}
 
-s5_dn_list = list(
-  "overlap_d13" = unique(s5_intd13.dn$Gene_symbol),
-  "overlap_LD" = unique(s5_intLD.dn$Gene_symbol)
-)
-
+s5_pnas.fit= na.omit(join(s5_pnas.fit, homolog_z, by="human.Symbol"))
 
 
-library(eulerr)
+#match
+ft.s5.deg123 = deg.cpm8 %>% filter(t.test <0.05) %>% filter(PValue <0.05) %>% filter(mean.cpm.pos > 5|mean.cpm.wt >5) %>%
+  filter(zfin_id_symbol %in% homolog_z$zfin_id_symbol)
+ft.s5.deg123.fit=ft.s5.deg123[,c(8,1,4)]
+ft.s5.deg123.fit[,"FC"]= logfc2fc(ft.s5.deg123.fit$logFC)
 
-    
-fit.up= euler(s5_up_list)
-fit.dn= euler(s5_dn_list, shape="ellipse")
-
-
-venncol6 = c("#A50026","#F46D43","#FEE090" ,"#313695","#4575B4","#ABD9E9")
-
-up.venn =plot(fit.up, 
-              quantities = TRUE,
-              fill = venncol6[1:2], alpha =0.3,
-              lty = 1,
-              labels = list(font = 4))
-
-dn.venn =plot(fit.dn, 
-              quantities = TRUE,
-              fill = venncol6[6:5], alpha =0.3,
-              lty = 1,
-              labels = list(font = 4))
+ft.s5.deg12 = deg.cpm8 %>% filter(t.test <0.05) %>% filter(PValue <0.05) %>% filter(mean.cpm.pos > 5|mean.cpm.wt >5) %>%
+  filter(zfin_id_symbol %in% homolog_z$zfin_id_symbol) %>% filter(zfin_id_symbol %in% deg12.primed)
+ft.s5.deg12.fit=ft.s5.deg12[,c(8,1,4)]
+ft.s5.deg12.fit[,"FC"]= logfc2fc(ft.s5.deg12.fit$logFC)
 
 
-tiff("./figures/s.Fig7_deg.all.venn3.15x12.tiff", width =20 , height = 10, res = 1200, units = "cm",compression = "lzw")
-#print(deg.all.venn)
-plot_grid("",up.venn,"",dn.venn,"",nrow = 1,label_size = 12,rel_widths =c(0.2,1,0.4,1,0.2) )
+ft.s5.deg12.fit=na.omit(join(ft.s5.deg12.fit, homolog_z, by="zfin_id_symbol"))
+
+ft.s5.deg123.fit=na.omit(join(ft.s5.deg123.fit, homolog_z, by="zfin_id_symbol"))
+
+s5_pnas.fit = filter(s5_pnas.fit, key %in% ft.s5.deg123.fit$key)
+d=duplicated(s5_pnas.fit$key)
+s5_pnas.fit=s5_pnas.fit[!d,]
+
+s5_pnas.fit=arrange(s5_pnas.fit,key)
+ft.s5.deg123.fit=arrange(ft.s5.deg123.fit, key)
+
+match= c()
+for (i in 1:nrow(ft.s5.deg123.fit)) {
+  
+  if ((s5_pnas.fit$FC[i]*ft.s5.deg123.fit$FC[i])>0) {
+    match=c(match,"overlap")
+  }else{
+    match = c(match,"no")
+  }
+}
+
+
+primed.l= c(ft.s5.deg123.fit$key)
+for (i in 1:nrow(ft.s5.deg123.fit)) {
+  
+  if ((s5_pnas.fit$FC[i]*ft.s5.deg123.fit$FC[i])<0) {
+        primed.l[i]=""
+  }else if (!(ft.s5.deg123.fit$key[i] %in% ft.s5.deg12.fit$key)){
+    primed.l [i]=""
+  }
+}
+
+
+df= data.frame("key"=ft.s5.deg123.fit$key,
+               "hhc"=s5_pnas.fit$FC,
+               "bPAC"= ft.s5.deg123.fit$FC,
+               "pval"=sqrt(ft.s5.deg123.fit$PValue*s5_pnas.fit$PValue),
+                "match"= match,
+                "gc_primed_bPAC"= primed.l)
+
+rownames(df)=ft.s5.deg123.fit$key
+
+library(ggrepel)
+set.seed(30)
+
+nw = ggplot(df, aes(hhc,bPAC,label=gc_primed_bPAC,size=-log10(pval)))+
+  geom_point(aes(color=match, alpha = 1,size=2))
+
+p1=nw+
+  geom_text_repel(max.overlaps = 1000,force = 5)+
+  #geom_text(aes(label = label, size = NULL))+
+  theme_classic()+ labs(title = "hhp vs bPAC+LD")+
+  geom_hline(yintercept=c(0,1.13,-1.13),linetype=c("solid",'dotted','dotted'))+
+  geom_vline(xintercept=c(0,1.13,-1.13),linetype=c("solid",'dotted','dotted'))+
+  xlim(c(-2.5,2))+ ylim(c(-10,4))+
+  scale_color_manual(values = alpha(c("grey","pink"),0.3))
+ 
+
+tiff(paste0("./figures/s.Fig.gc-primed.com.tiff"), height = 25,width = 25, res=1200, units = "cm", compression = "lzw")
+plot(p1)
 dev.off()
+
+
+write.csv(df,"./outputs/s.table6.GC-prime_gene_comparison.csv")
+
+
+
+
+
+
+
+
 
 
 

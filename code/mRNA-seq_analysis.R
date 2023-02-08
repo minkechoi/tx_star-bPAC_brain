@@ -471,7 +471,7 @@ for (i in c(2:8)) {
 deg.all = rbind(deg_all.up,deg_all.dn)
 
 #s.table1a
-write.csv(deg.all[,c(1,2,4,5,7:9,0:23)],"./outputs/s.table1a_all.DEGs.csv")
+write.csv(deg.all[,c(7:8,1,2,4,5,9,20:23)],"./outputs/s.table1a_all.DEGs.csv")
 
 #listing DEGs
 deg_all = unique(deg.all$zfin_id_symbol)

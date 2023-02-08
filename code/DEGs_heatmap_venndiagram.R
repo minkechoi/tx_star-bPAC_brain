@@ -158,7 +158,6 @@ all.list = list(
 
 
 library(eulerr)
-library(UpSetR)
 
 
 fit3= euler(all.list, shape="ellipse")
@@ -190,75 +189,7 @@ tiff("./figures/Fig3B_deg.all.venn3.15x12.tiff", width =15 , height = 12, res = 
 plot_grid(deg.up.venn,deg.dn.venn)
 dev.off()
 ###
-'
-original fitted residuals regionError
-up.d6                                                406    406         0       0.002
-up.d13                                               550    550         0       0.003
-up.d120                                              527    527         0       0.003
-down.d6                                              404    404         0       0.002
-down.d13                                             837    837         0       0.004
-down.d120                                            508    508         0       0.003
-up.d6&up.d13                                         112    112         0       0.001
-up.d6&up.d120                                         30     30         0       0.000
-up.d6&down.d6                                          0      0         0       0.000
-up.d6&down.d13                                        10     10         0       0.000
-up.d6&down.d120                                        1      1         0       0.000
-up.d13&up.d120                                        69     69         0       0.000
-up.d13&down.d6                                         6      0         6       0.001
-up.d13&down.d13                                        0      0         0       0.000
-up.d13&down.d120                                       1      0         1       0.000
-up.d120&down.d6                                        0      0         0       0.000
-up.d120&down.d13                                      11      0        11       0.002
-up.d120&down.d120                                      0      0         0       0.000
-down.d6&down.d13                                     357    357         0       0.002
-down.d6&down.d120                                    217    217         0       0.001
-down.d13&down.d120                                    84      0        84       0.019
-up.d6&up.d13&up.d120                                  48     48         0       0.000
-up.d6&up.d13&down.d6                                   0      0         0       0.000
-up.d6&up.d13&down.d13                                  0      0         0       0.000
-up.d6&up.d13&down.d120                                 0      0         0       0.000
-up.d6&up.d120&down.d6                                  0      0         0       0.000
-up.d6&up.d120&down.d13                                 1      0         1       0.000
-up.d6&up.d120&down.d120                                0      0         0       0.000
-up.d6&down.d6&down.d13                                 0      0         0       0.000
-up.d6&down.d6&down.d120                                0      0         0       0.000
-up.d6&down.d13&down.d120                               0      0         0       0.000
-up.d13&up.d120&down.d6                                 0      0         0       0.000
-up.d13&up.d120&down.d13                                0      0         0       0.000
-up.d13&up.d120&down.d120                               0      0         0       0.000
-up.d13&down.d6&down.d13                                0      0         0       0.000
-up.d13&down.d6&down.d120                               0      0         0       0.000
-up.d13&down.d13&down.d120                              0      0         0       0.000
-up.d120&down.d6&down.d13                               1      0         1       0.000
-up.d120&down.d6&down.d120                              0      0         0       0.000
-up.d120&down.d13&down.d120                             0      0         0       0.000
-down.d6&down.d13&down.d120                           277    277         0       0.001
-up.d6&up.d13&up.d120&down.d6                           0      0         0       0.000
-up.d6&up.d13&up.d120&down.d13                          0      0         0       0.000
-up.d6&up.d13&up.d120&down.d120                         0      0         0       0.000
-up.d6&up.d13&down.d6&down.d13                          0      0         0       0.000
-up.d6&up.d13&down.d6&down.d120                         0      0         0       0.000
-up.d6&up.d13&down.d13&down.d120                        0      0         0       0.000
-up.d6&up.d120&down.d6&down.d13                         0      0         0       0.000
-up.d6&up.d120&down.d6&down.d120                        0      0         0       0.000
-up.d6&up.d120&down.d13&down.d120                       0      0         0       0.000
-up.d6&down.d6&down.d13&down.d120                       0      0         0       0.000
-up.d13&up.d120&down.d6&down.d13                        0      0         0       0.000
-up.d13&up.d120&down.d6&down.d120                       0      0         0       0.000
-up.d13&up.d120&down.d13&down.d120                      0      0         0       0.000
-up.d13&down.d6&down.d13&down.d120                      0      0         0       0.000
-up.d120&down.d6&down.d13&down.d120                     0      0         0       0.000
-up.d6&up.d13&up.d120&down.d6&down.d13                  0      0         0       0.000
-up.d6&up.d13&up.d120&down.d6&down.d120                 0      0         0       0.000
-up.d6&up.d13&up.d120&down.d13&down.d120                0      0         0       0.000
-up.d6&up.d13&down.d6&down.d13&down.d120                0      0         0       0.000
-up.d6&up.d120&down.d6&down.d13&down.d120               0      0         0       0.000
-up.d13&up.d120&down.d6&down.d13&down.d120              0      0         0       0.000
-up.d6&up.d13&up.d120&down.d6&down.d13&down.d120        0      0         0       0.000
 
-diagError: 0.019 
-stress:    0.003 
-'
 
 ##deg.lis. comparison sp.sn
 deg.sp.sn.up.list = list(

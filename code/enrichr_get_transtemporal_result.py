@@ -5,7 +5,7 @@ import requests
 
 ENRICHR_URL = 'https://maayanlab.cloud/Enrichr/export'
 query_string = '?userListId=%s&filename=%s&backgroundType=%s'
-user_list_id = 56767500
+user_list_id = 56836027
 filename = 'transtemporal_DEGs'
 gene_set_library = 'Tabula_Muris'
 
