@@ -1,6 +1,6 @@
 # tx_star-bPAC_brain; Time-series zebrafish whole brain mRNA-seq analyses.
 
-This project for the data generation and analyses of the study by Choi et al., 2023 titled: "Developmental Glucocorticoid exposure alters adult behavior and the brain-wide transcriptional landscape ". 
+This project for the data generation and analyses of the study by Choi et al., 2023 "Developmental Glucocorticoid exposure alters adult behavior and the brain-wide transcriptional landscape " and Eachus etal., 2023 "Elevated Glucocorticoid alters the trajectory of hypothalamic development and function".
 
 BAckgrounds of sequencing.
 paired-end TruSeq Stranded mRNA libraries (Illumina, CA, USA) were constructed and over 20M of 50 bp reads/sample were sequenced. For this study, a total of 60 samples were sequenced, consisting of 5 biological replicates at four different time points (6, 13, 120 dpf, and acute-stressed at 120dpf) in every three groups (wildtype, bPAC+ and bPAC-). Raw sequenced reads(.fastq) from Illumina NovaSeq 6000 are avaiable to acceces through ENA (PRJEB53713). 
@@ -14,11 +14,11 @@ Briefly, after the quality control procedures of fastq files using FASTQC (http:
 DEG identification and downstream analysis.
 Downstream and statistical analyzes were performed with R scripts, and files; "gene_count_matrix.csv", and "sample_info.csv".
 
-Simply, sourced the R script file, "mRNA-seq_analysis.R" in the code folder.
+Simply, sourced the R script in the code folder, "mRNA-seq_analysis.R" for the study from Choi et al., 2023 and run another R script, "neurogenesis_v2.R", additionaly for the study from Eachus et al., 2023.  
 
 R package edgeR{Robinson, 2010} was used to quantify the number of reads. DEGs were determined by which showed more than absolute 2-fold changes (FC) in their expression with under 0.01 of the False discovery rates (FDR). We used a lower fold change threshold (absolute 1.5 FC) for 120 dpf samples because there is no elevation of cortisol in bPAC+ compared to wildtype at 120 dpf. 
 
-For the functional analyzes, R packages including clusterprofiler{Wu, 2021}, gProfiler2{Raudvere, 2019}, enrichGO{Wu, 2021} and annotation platforms (Chea3{Keenan, 2019}, DisGeNET{Piñero, 2021}, Enrichr {Chen, 2013}, Tabula_Muris{Schaum, 2018}) were used. String database{Szklarczyk, 2019} and Cytoscape{Shannon, 2003} were utilized for the protein-protein interaction network. The list of gene including social genes (101 genes) and epigenetic modifiers which are associated with DNA modification (52 genes) and histone modification (365 genes) as well as RNA modification and processing (1886 genes) was obtained from the Gene Ontology Annotation (GOA) database and they are available in the data folder. 
+For the functional analyzes, R packages including clusterprofiler{Wu, 2021}, gProfiler2{Raudvere, 2019}, enrichGO{Wu, 2021} and annotation platforms (Chea3{Keenan, 2019}, DisGeNET{Piñero, 2021}, Enrichr {Chen, 2013}, Tabula_Muris{Schaum, 2018}) were used. String database{Szklarczyk, 2019} and Cytoscape{Shannon, 2003} were utilized for the protein-protein interaction network. The list of gene including social genes (101 genes) and epigenetic modifiers which are associated with DNA modification (52 genes) and histone modification (365 genes) as well as RNA modification and processing (1886 genes) was obtained from the Gene Ontology Annotation (GOA) database and those files are available in the data folder. 
 
 
 References
