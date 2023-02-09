@@ -1,6 +1,6 @@
 # tx_star-bPAC_brain; Time-series zebrafish whole brain mRNA-seq analyses.
 
-This project for the data generation and analyses of the study by Choi et al., 2023 "Developmental Glucocorticoid exposure alters adult behavior and the brain-wide transcriptional landscape " and Eachus etal., 2023 "Elevated Glucocorticoid alters the trajectory of hypothalamic development and function".
+This project for the data generation and analyses of the study by Choi et al., 2023 "Developmental Glucocorticoid exposure alters adult behavior and the brain-wide transcriptional landscape " and Eachus et al., 2023 "Elevated Glucocorticoid alters the trajectory of hypothalamic development and function".
 
 BAckgrounds of sequencing.
 paired-end TruSeq Stranded mRNA libraries (Illumina, CA, USA) were constructed and over 20M of 50 bp reads/sample were sequenced. For this study, a total of 60 samples were sequenced, consisting of 5 biological replicates at four different time points (6, 13, 120 dpf, and acute-stressed at 120dpf) in every three groups (wildtype, bPAC+ and bPAC-). Raw sequenced reads(.fastq) from Illumina NovaSeq 6000 are avaiable to acceces through ENA (PRJEB53713). 
