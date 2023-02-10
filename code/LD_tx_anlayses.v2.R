@@ -1456,7 +1456,7 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
               RowSideColors=desturate[gr.row],
               lwid = c(1,2.5),
               
-              #cellnote=adult_specific.ht.FDR,
+              #cellnote=adult_onset.ht.FDR,
               #notecex=1,
               #notecol="black",
               labRow = "",
@@ -1508,23 +1508,23 @@ trans_temporal.alt= LD.all.disig8[c(which(matched.alt ==1)),8]
 trans_temporal.alt.sig = intersect(trans_temporal.alt,main.LD.disig.FDR)
 
 
-adult_specific.alt = c()
+adult_onset.alt = c()
 
 for (i in 1:nrow(LD.all.disig8)){
   if (abs(LD.all.disig8$logFC[i])> log2(2) &
       abs(LD.all.disig6$logFC[i])< log2(1.5) &
        abs(LD.all.disig5$logFC[i])< log2(1.5)){
-    adult_specific.alt[i]=1
+    adult_onset.alt[i]=1
   }else { 
-    adult_specific.alt[i]=0
+    adult_onset.alt[i]=0
   }
 }
 
-adult_specific.alt= LD.all.disig8[c(which(adult_specific.alt == 1)),8]
-adult_specific.alt.sig = intersect(adult_specific.alt,LD.all.disig8$zfin_id_symbol[c(which(LD.all.disig8$FDR <0.01))])
+adult_onset.alt= LD.all.disig8[c(which(adult_onset.alt == 1)),8]
+adult_onset.alt.sig = intersect(adult_onset.alt,LD.all.disig8$zfin_id_symbol[c(which(LD.all.disig8$FDR <0.01))])
 
 #human_orthologs
-combi.dis.LD_deg = c(trans_temporal.alt.sig,adult_specific.alt.sig)
+combi.dis.LD_deg = c(trans_temporal.alt.sig,adult_onset.alt.sig)
 combi.dis.LD_deg.zh = filter(zh.all,zfin_id_symbol %in% combi.dis.LD_deg)
 #write.csv(combi.dis.LD_deg.zh,"./outputs/combi.dis.LD_deg.zh.csv")
 
@@ -1561,24 +1561,24 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
 dev.off()
 
 
-adult_specific.ht.mt = cbind("d6"=LD.all.disig5$logFC[c(which(LD.all.disig5$zfin_id_symbol %in% adult_specific.alt.sig))],
-                    "d13"=LD.all.disig6$logFC[c(which(LD.all.disig6$zfin_id_symbol %in% adult_specific.alt.sig))],
-                    "d120"=LD.all.disig7$logFC[c(which(LD.all.disig7$zfin_id_symbol %in% adult_specific.alt.sig))],
-                    "LD"=LD.all.disig8$logFC[c(which(LD.all.disig8$zfin_id_symbol %in% adult_specific.alt.sig))])
+adult_onset.ht.mt = cbind("d6"=LD.all.disig5$logFC[c(which(LD.all.disig5$zfin_id_symbol %in% adult_onset.alt.sig))],
+                    "d13"=LD.all.disig6$logFC[c(which(LD.all.disig6$zfin_id_symbol %in% adult_onset.alt.sig))],
+                    "d120"=LD.all.disig7$logFC[c(which(LD.all.disig7$zfin_id_symbol %in% adult_onset.alt.sig))],
+                    "LD"=LD.all.disig8$logFC[c(which(LD.all.disig8$zfin_id_symbol %in% adult_onset.alt.sig))])
 
 
-st_sig_tx_1= as.matrix(adult_specific.ht.mt)
+st_sig_tx_1= as.matrix(adult_onset.ht.mt)
 distfunc <- function(x) dist(x, method="euclidean")
 hclustfunc <- function(x) hclust(x, method="ward.D2")
-row.names(st_sig_tx_1)= LD.all.disig8$zfin_id_symbol[c(which(LD.all.disig8$zfin_id_symbol %in% adult_specific.alt.sig))]
+row.names(st_sig_tx_1)= LD.all.disig8$zfin_id_symbol[c(which(LD.all.disig8$zfin_id_symbol %in% adult_onset.alt.sig))]
 
 hc = hclustfunc(distfunc(st_sig_tx_1))
 ht.label.order = hc$labels[hc$order]
-write(ht.label.order,"./figures/Fig6e_adult_specific.dis.DEGS.label.order.txt")
-nrow(adult_specific.ht.mt)#65
+write(ht.label.order,"./figures/Fig6e_adult_onset.dis.DEGS.label.order.txt")
+nrow(adult_onset.ht.mt)#65
 
 
-tiff(paste0("./figures/Fig6e_adult_specific.dis.DEGS.heatmap.4x4_",nrow(st_sig_tx_1) ,".tiff"), height = 7,width = 5, res=1200, units = "cm", compression = "lzw")
+tiff(paste0("./figures/Fig6e_adult_onset.dis.DEGS.heatmap.4x4_",nrow(st_sig_tx_1) ,".tiff"), height = 7,width = 5, res=1200, units = "cm", compression = "lzw")
 
 try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
               dendrogram = "row",Colv = F,breaks=breaks,hclustfun=hclustfunc, distfun=distfunc,
@@ -1590,7 +1590,7 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
               cexRow = 0.8,
               colsep = 4,
               labCol = c("6","13","120","LD"),
-              #cellnote=adult_specific.ht.FDR,
+              #cellnote=adult_onset.ht.FDR,
               #notecex=1,
               #notecol="black",
               labRow = "",
@@ -1599,13 +1599,13 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
 dev.off()
 
 #combi
-maint.adult_specific.ht.mt = rbind(maint.ht.mt,adult_specific.ht.mt)
+maint.adult_onset.ht.mt = rbind(maint.ht.mt,adult_onset.ht.mt)
 
-st_sig_tx_1= as.matrix(maint.adult_specific.ht.mt)
+st_sig_tx_1= as.matrix(maint.adult_onset.ht.mt)
 distfunc <- function(x) dist(x, method="euclidean")
 hclustfunc <- function(x) hclust(x, method="ward.D2")
 row.names(st_sig_tx_1)= c(LD.all.disig8$zfin_id_symbol[c(which(LD.all.disig5$zfin_id_symbol %in% trans_temporal.alt.sig))],
-  LD.all.disig8$zfin_id_symbol[c(which(LD.all.disig8$zfin_id_symbol %in% adult_specific.alt.sig))]
+  LD.all.disig8$zfin_id_symbol[c(which(LD.all.disig8$zfin_id_symbol %in% adult_onset.alt.sig))]
   )
 
 hc = hclustfunc(distfunc(st_sig_tx_1))
@@ -1632,7 +1632,7 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
               RowSideColors=desturate[gr.row],
               lwid = c(1,2.5),
               
-              #cellnote=adult_specific.ht.FDR,
+              #cellnote=adult_onset.ht.FDR,
               #notecex=1,
               #notecol="black",
               labRow = "",
@@ -1693,26 +1693,26 @@ trans_temporal.alt.sig.table = dplyr::filter(LD.all.8, zfin_id_symbol %in% trans
 trans_temporal.alt.sig.table[,"class"]="trans-temporal"
 write.csv(trans_temporal.alt.sig.table[,c(7:8,1,2,4,5,9,20:24)], "./outputs/s.table8.trans_temporal_all.LD_DEGs.csv")
 
-adult_specific.alt = c()
+adult_onset.alt = c()
 
 for (i in 1:nrow(LD.all.8)){
   if (abs(LD.all.8$logFC[i])> log2(2) & 
       abs(LD.all.6$logFC[i])< log2(1.5) &
       abs(LD.all.5$logFC[i])< log2(1.5)){
-    adult_specific.alt[i]=1
+    adult_onset.alt[i]=1
   }else { 
-    adult_specific.alt[i]=0
+    adult_onset.alt[i]=0
   }
 }
 
-adult_specific.alt= LD.all.8[c(which(adult_specific.alt == 1)),8]
-adult_specific.alt.sig = intersect(adult_specific.alt,LD.all.8$zfin_id_symbol[c(which(LD.all.8$FDR <0.01))])
-adult_specific.alt.sig.table = dplyr::filter(LD.all.8, zfin_id_symbol %in% adult_specific.alt.sig )
-adult_specific.alt.sig.table[,"class"]="adult-specific"
-write.csv(adult_specific.alt.sig.table[,c(7:8,1,2,4,5,9,20:24)],"./outputs/s.table8.adult_specific_all.LD_DEGs.csv")
+adult_onset.alt= LD.all.8[c(which(adult_onset.alt == 1)),8]
+adult_onset.alt.sig = intersect(adult_onset.alt,LD.all.8$zfin_id_symbol[c(which(LD.all.8$FDR <0.01))])
+adult_onset.alt.sig.table = dplyr::filter(LD.all.8, zfin_id_symbol %in% adult_onset.alt.sig )
+adult_onset.alt.sig.table[,"class"]="adult-onset"
+write.csv(adult_onset.alt.sig.table[,c(7:8,1,2,4,5,9,20:24)],"./outputs/s.table8.adult_onset_all.LD_DEGs.csv")
 
 #human_orthologs
-combi.LD_deg = c(trans_temporal.alt.sig,adult_specific.alt.sig)
+combi.LD_deg = c(trans_temporal.alt.sig,adult_onset.alt.sig)
 combi.LD_deg.zh = dplyr::filter(zh.all, zfin_id_symbol %in% combi.LD_deg)
 #write.csv(combi.dis.LD_deg.zh,"./outputs/combi.dis.LD_deg.zh.csv")
 
@@ -1748,26 +1748,26 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
 
 dev.off()
 
-#heatmap for adult_specific.alt.sig
+#heatmap for adult_onset.alt.sig
 
-adult_specific.ht.mt = cbind("d6"=LD.all.5$logFC[c(which(LD.all.5$zfin_id_symbol %in% adult_specific.alt.sig))],
-                     "d13"=LD.all.6$logFC[c(which(LD.all.6$zfin_id_symbol %in% adult_specific.alt.sig))],
-                     "d120"=LD.all.7$logFC[c(which(LD.all.7$zfin_id_symbol %in% adult_specific.alt.sig))],
-                     "LD"=LD.all.8$logFC[c(which(LD.all.8$zfin_id_symbol %in% adult_specific.alt.sig))])
+adult_onset.ht.mt = cbind("d6"=LD.all.5$logFC[c(which(LD.all.5$zfin_id_symbol %in% adult_onset.alt.sig))],
+                     "d13"=LD.all.6$logFC[c(which(LD.all.6$zfin_id_symbol %in% adult_onset.alt.sig))],
+                     "d120"=LD.all.7$logFC[c(which(LD.all.7$zfin_id_symbol %in% adult_onset.alt.sig))],
+                     "LD"=LD.all.8$logFC[c(which(LD.all.8$zfin_id_symbol %in% adult_onset.alt.sig))])
 
 
-st_sig_tx_1= as.matrix(adult_specific.ht.mt)
+st_sig_tx_1= as.matrix(adult_onset.ht.mt)
 distfunc <- function(x) dist(x, method="euclidean")
 hclustfunc <- function(x) hclust(x, method="ward.D2")
-row.names(st_sig_tx_1)= LD.all.8$zfin_id_symbol[c(which(LD.all.8$zfin_id_symbol %in% adult_specific.alt.sig))]
+row.names(st_sig_tx_1)= LD.all.8$zfin_id_symbol[c(which(LD.all.8$zfin_id_symbol %in% adult_onset.alt.sig))]
 
 hc = hclustfunc(distfunc(st_sig_tx_1))
 ht.label.order = hc$labels[hc$order]
-write(ht.label.order,"./figures/Fig6e_adult_specific.ELSprimed.LD.DEGS.label.order.txt")
-nrow(adult_specific.ht.mt)#69
+write(ht.label.order,"./figures/Fig6e_adult_onset.ELSprimed.LD.DEGS.label.order.txt")
+nrow(adult_onset.ht.mt)#69
 
 
-tiff(paste0("./figures/Fig6e_adult_specific.ELSprimed.LD.DEGS.2.heatmap.4x4_a",nrow(st_sig_tx_1) ,".tiff"),
+tiff(paste0("./figures/Fig6e_adult_onset.ELSprimed.LD.DEGS.2.heatmap.4x4_a",nrow(st_sig_tx_1) ,".tiff"),
      height = 7,width = 5, res=1200, units = "cm", compression = "lzw")
 
 try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
@@ -1780,7 +1780,7 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
               cexRow = 0.8,
               colsep = 4,
               labCol = c("6","13","120","LD"),
-              #cellnote=adult_specific.ht.FDR,
+              #cellnote=adult_onset.ht.FDR,
               #notecex=1,
               #notecol="black",
               labRow = "",
@@ -1789,13 +1789,13 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
 dev.off()
 
 #combi
-maint.adult_specific.ht.mt = rbind(maint.ht.mt,adult_specific.ht.mt)
+maint.adult_onset.ht.mt = rbind(maint.ht.mt,adult_onset.ht.mt)
 
-st_sig_tx_1= as.matrix(maint.adult_specific.ht.mt)
+st_sig_tx_1= as.matrix(maint.adult_onset.ht.mt)
 distfunc <- function(x) dist(x, method="euclidean")
 hclustfunc <- function(x) hclust(x, method="ward.D2")
 row.names(st_sig_tx_1)= c(LD.all.8$zfin_id_symbol[c(which(LD.all.5$zfin_id_symbol %in% trans_temporal.alt.sig))],
-                          LD.all.8$zfin_id_symbol[c(which(LD.all.8$zfin_id_symbol %in% adult_specific.alt.sig))]
+                          LD.all.8$zfin_id_symbol[c(which(LD.all.8$zfin_id_symbol %in% adult_onset.alt.sig))]
 )
 
 hc = hclustfunc(distfunc(st_sig_tx_1))
@@ -1824,7 +1824,7 @@ try(heatmap.2((st_sig_tx_1), col=mycol, scale='none',
               #RowSideColors=desturate[gr.row],
               lwid = c(1,2.5),
               
-              #cellnote=adult_specific.ht.FDR,
+              #cellnote=adult_onset.ht.FDR,
               #notecex=1,
               #notecol="black",
               labRow = "",
@@ -1890,16 +1890,16 @@ print(data2)
 #check the ID and modifiy the .py file.
 source_python("./code/enrichr_get_transtemporal_result.py")
 
-# adult_specific
+# adult_onset
 
-as_ld= na.omit(zh.all %>% filter(zfin_id_symbol %in%adult_specific.alt.sig ))
+as_ld= na.omit(zh.all %>% filter(zfin_id_symbol %in%adult_onset.alt.sig ))
 as_ld=unique(as_ld[,2])
 
 
 ENRICHR_URL = 'https://maayanlab.cloud/Enrichr/addList'
 genes_str = as.character(paste0(as_ld,collapse = "\n"))
 
-description = 'adult_specific_DEGs'
+description = 'adult_onset_DEGs'
 
 payload = list('list'= c("None",genes_str),
                'description'= c("None",description))
@@ -1924,18 +1924,18 @@ print(data2)
 
 ### get_result
 
-source_python("./code/enrichr_get_adult_specific_result.py")
+source_python("./code/enrichr_get_adult_onset_result.py")
 
 
 #read_table
 tp_celltype_enrich = read.table("./outputs/transtemporal_DEGs.txt",sep = "\t",header = T)
-as_celltype_enrich = read.table("./outputs/adult_specific_DEGs.txt",sep = "\t",header = T)
+as_celltype_enrich = read.table("./outputs/adult_onset_DEGs.txt",sep = "\t",header = T)
 
 sig.tp.cell= filter(tp_celltype_enrich,Adjusted.P.value <0.05)[,c(1,2,3,4,7:9)]
 sig.as.cell= filter(as_celltype_enrich,Adjusted.P.value <0.05)[,c(1,2,3,4,7:9)]
 
 sig.tp.cell[,"source"] ="transtemporal"
-sig.as.cell[,"source"] ="adult-specific"
+sig.as.cell[,"source"] ="adult-onset"
 
 sig.cell_type123 = rbind(sig.tp.cell,sig.as.cell)
 
@@ -1979,16 +1979,16 @@ print(data2)
 #check the ID and modifiy the .py file.
 source_python("./code/enrichr_get_transtemporal_result.py")
 
-# adult_specific
+# adult_onset
 
-as_ld= na.omit(zh.all %>% filter(zfin_id_symbol %in%adult_specific.alt.sig )%>% filter(zfin_id_symbol%in% deg12.primed))
+as_ld= na.omit(zh.all %>% filter(zfin_id_symbol %in%adult_onset.alt.sig )%>% filter(zfin_id_symbol%in% deg12.primed))
 as_ld=unique(as_ld[,2])
 
 
 ENRICHR_URL = 'https://maayanlab.cloud/Enrichr/addList'
 genes_str = as.character(paste0(as_ld,collapse = "\n"))
 
-description = 'adult_specific_DEGs'
+description = 'adult_onset_DEGs'
 
 payload = list('list'= c("None",genes_str),
                'description'= c("None",description))
@@ -2013,18 +2013,18 @@ print(data2)
 
 ### get_result
 
-source_python("./code/enrichr_get_adult_specific_result.py")
+source_python("./code/enrichr_get_adult_onset_result.py")
 
 
 #read_table
 tp_celltype_enrich = read.table("./outputs/transtemporal_DEGs.txt",sep = "\t",header = T)
-as_celltype_enrich = read.table("./outputs/adult_specific_DEGs.txt",sep = "\t",header = T)
+as_celltype_enrich = read.table("./outputs/adult_onset_DEGs.txt",sep = "\t",header = T)
 
 sig.tp.cell= filter(tp_celltype_enrich,Adjusted.P.value <0.05)[,c(1,2,3,4,7:9)]
 sig.as.cell= filter(as_celltype_enrich,Adjusted.P.value <0.05)[,c(1,2,3,4,7:9)]
 
 sig.tp.cell[,"source"] ="transtemporal"
-sig.as.cell[,"source"] ="adult-specific"
+sig.as.cell[,"source"] ="adult-onset"
 
 sig.cell_type12 = rbind(sig.tp.cell,sig.as.cell)
 
@@ -2347,8 +2347,8 @@ for (i in 1:nrow(ft.s5.deg123.fit)) {
 
 
 df= data.frame("key"=ft.s5.deg123.fit$key,
-               "hhc"=s5_pnas.fit$FC,
-               "bPAC"= ft.s5.deg123.fit$FC,
+               "hhc_FC"=s5_pnas.fit$FC,
+               "bPAC_FC"= ft.s5.deg123.fit$FC,
                "pval"=sqrt(ft.s5.deg123.fit$PValue*s5_pnas.fit$PValue),
                 "match"= match,
                 "gc_primed_bPAC"= primed.l)
@@ -2358,20 +2358,22 @@ rownames(df)=ft.s5.deg123.fit$key
 library(ggrepel)
 set.seed(30)
 
-nw = ggplot(df, aes(hhc,bPAC,label=gc_primed_bPAC,size=-log10(pval)))+
-  geom_point(aes(color=match, alpha = 1,size=2))
+nw = ggplot(df, aes(hhc_FC,bPAC_FC,label=gc_primed_bPAC,size=-log2(pval)))+
+  geom_point(aes(color=match, alpha = 1,size=-log10(pval)))
 
 p1=nw+
-  geom_text_repel(max.overlaps = 1000,force = 5)+
+  geom_text_repel(max.overlaps = 1000,force = 5,)+
   #geom_text(aes(label = label, size = NULL))+
-  theme_classic()+ labs(title = "hhp vs bPAC+LD")+
+  theme_classic()+ 
+  labs(y="bPAC+LD_FC", x="hpc_ELS-primed_FC")+
   geom_hline(yintercept=c(0,1.13,-1.13),linetype=c("solid",'dotted','dotted'))+
   geom_vline(xintercept=c(0,1.13,-1.13),linetype=c("solid",'dotted','dotted'))+
   xlim(c(-2.5,2))+ ylim(c(-10,4))+
-  scale_color_manual(values = alpha(c("grey","pink"),0.3))
+  scale_color_manual(values = alpha(c("grey","pink"),0.3))+
+  theme(axis.title = element_text(size=15, face = "bold"))
  
 
-tiff(paste0("./figures/s.Fig.gc-primed.com.tiff"), height = 25,width = 25, res=1200, units = "cm", compression = "lzw")
+tiff(paste0("./figures/s.Fig6.gc-primed.com.tiff"), height = 18,width = 30, res=1200, units = "cm", compression = "lzw")
 plot(p1)
 dev.off()
 
