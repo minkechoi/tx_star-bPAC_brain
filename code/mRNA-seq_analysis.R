@@ -49,7 +49,7 @@ colnames(ID.gene)=c("id","ensembl_gene_id", "zfin_id_symbol")
 #adding Ensembl annotation
 library(biomaRt)
 listMarts()
-ensembl = useEnsembl(biomart="ensembl", mirror = "uswest") #if not working, try with "useast"
+ensembl = useEnsembl(biomart="ensembl", mirror = "www") #if not working, try with "useast" or"uswest"
 datasets <- listDatasets(ensembl)
 head(datasets)
 ensembl = useDataset("drerio_gene_ensembl",mart=ensembl)

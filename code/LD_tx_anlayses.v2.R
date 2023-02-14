@@ -600,7 +600,7 @@ dev.off()
 
 
 #list of background genes
-for (i in c(8:10)){
+for (i in c(4,8:10)){
   deg = get(paste0("deg.cpm",i))
   deg = deg %>% filter(mean.cpm.pos > 5|mean.cpm.wt >5)
   deg = prot_id_map[deg$zfin_id_symbol, "ENTREZID"]
@@ -836,7 +836,7 @@ all.LD.tc_enrich.dn.tb= all.LD.tc_enrich.dn.tb %>% filter(Count >= 10) %>% filte
 
 #write_combined_table
 
-9write.csv(all.LD.tc_enrich.dn.tb,"./outputs/s.table4d_all_LD.tc_enrich.dn.tb.csv" )
+write.csv(all.LD.tc_enrich.dn.tb,"./outputs/s.table4d_all_LD.tc_enrich.dn.tb.csv" )
 
 
 ######sb_LD
