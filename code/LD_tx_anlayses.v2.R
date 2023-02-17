@@ -2262,7 +2262,7 @@ epi.bar[3,2]=50 # 6(from RNA modification) + 44(from RNA_process) - 5 overlapped
 tiff(paste0("./figures/Fig6.epi.LD.DEGS.2.bar.",nrow(epi.bar.table) ,".tiff"), height = 7,width = 6, res=1200, units = "cm", compression = "lzw")
 
 epi.bar[,"modifications"]= "modifications"
-ggplot(epi.bar, aes(x=modifications, y= n, fill=x)) +
+ggplot(epi.bar, aes(x=modifications, y= n, fill=type)) +
   geom_bar(position="stack",stat="identity") +
   scale_fill_viridis(discrete=TRUE, name="") +
   theme_classic() +
