@@ -604,7 +604,7 @@ source("./code/mRNA-seq_analysis_for_LD.R")
 # identification of DEGs, cotains codes for Fig5BCE, Fig6ABC, stable 3,4,5,6,7 --------------------------------------------------
 
 
-source("./code/LD_tx_anlayses.R")
+source("./code/LD_tx_anlayses.v2.R")
 
 
 
