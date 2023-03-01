@@ -84,21 +84,7 @@ done
 module purge 
 module load StringTie
 
-#merge
-
 mkdir d120.string
-#stringtie --merge -p 16 -G ../ref_genome/danio/annotation/Danio_rerio.GRCz11.99.gtf -o ./tron_brain.els.merged.gtf els.filelist.txt
-
-#module purge 
-#module load GffCompare
-
-#mkdir ./gffcom/els
-#gffcompare -r ../ref_genome/danio/annotation/Danio_rerio.GRCz11.99.gtf -o ./gffcom/els/ -G ./tron_brain.els.merged.gtf
-
-#quantification
-#module purge 
-#module load StringTie/1.3.3b-foss-2016b
-
 
 find ./bam/d120/ -type f| grep .md.bam |sort > d120.md.bamfiles
 awk -F"/" '{print $4}' d120.md.bamfiles | sed 's/.md.bam//gi' |sort > d120.md.folder
