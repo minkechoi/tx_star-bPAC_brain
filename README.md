@@ -10,7 +10,7 @@ Read Mapping and quantification.
 shell scripts(.sh) in Supplementary folder were used for mapping and quantification of reads in HPC environment. 
 Briefly, after the quality control procedures of fastq files using FASTQC (http://www.bioinformatics.babraham.ac.uk/projects/fastqc/), sequenced reads of each sample were processed by fastp{Chen, 2018} for removal of adapter sequences, low quality reads, and polyG in 3’ ends. Cleaned reads were mapped to the zebrafish reference genome assembly (GRCz11) with Ensemble annotation version 107 using HISAT2{Kim, 2015}. Samtools{Li, 2009} processed sam to bam file conversion. And then, quantification of expressed transcripts was achieved using Stringtie{Pertea, 2016}. Outputfiles from Stringtie were transformed for DESeq2 and edgeR by using prepDE.py (https://ccb.jhu.edu/software/stringtie/dl/prepDE.py3). "gtf.file.list" file contains sample IDs and paths (eg. https://ccb.jhu.edu/software/stringtie/dl/sample_lst.txt) 
 
-> python prepDE.py -i gtf.file.list -l 50
+> python3 prepDE.py3 -i gtf.file.list -l 50
 
 DEG identification and downstream analysis.
 Downstream and statistical analyzes were performed with R scripts, and files; "gene_count_matrix.csv", and "sample_info.csv".
