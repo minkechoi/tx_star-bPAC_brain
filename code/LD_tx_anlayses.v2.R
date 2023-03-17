@@ -35,12 +35,12 @@ for(i in 9:10){
 #GC pathway,nCPM
 library(plotrix)
 
-GC_path = c("nr3c1","nr3c2","igfbp1a","fkbp5","tsc22d3","hsd11b2")
+GC_path = c("nr3c1","nr3c2","crhr1","fkbp5","tsc22d3","hsd11b2")
 
 # gc_path
 gcp.deg = gene_all%>% filter(zfin_id_symbol %in% GC_path)%>%arrange(factor(zfin_id_symbol, level = GC_path ))%>% 
   filter(source %in% time.name[c(7:8)])
-GC_pathway = c(rep("nr3c1",4),rep("nr3c2",4),rep("igfbp1a",4),rep("fkbp5",4),rep("tsc22d3",4),rep("hsd11b2",4))
+GC_pathway = c(rep("nr3c1",4),rep("nr3c2",4),rep("crhr1",4),rep("fkbp5",4),rep("tsc22d3",4),rep("hsd11b2",4))
 time_point <- rep(c(rep("d120",2),rep("LD",2)),6)
 geno = rep(c("wt","bPAC+"),12)
 
@@ -91,7 +91,7 @@ a= ggplot(data, aes(fill=id, y=mean_CPM, x=time_point )) +
   scale_fill_manual(values = desturate)+
   scale_y_continuous(expand=expansion(mult = c(0, 0.4)))+
   labs(title = "",x="")+
-  facet_wrap(~GC_pathway,scales = "free_y",ncol = 3)
+  facet_wrap(~GC_pathway,scales = "free_y",ncol = 6)
 
 
 #Error bar correction
@@ -110,14 +110,14 @@ pval_as=na.omit(pval_as)
 # revise * bars
 myplot= ggplot_build(a)
 tem.t= myplot$data[[3]]
-tem.t=rbind(tem.t,tem.t,tem.t,tem.t[1:3,])
+tem.t=rbind(tem.t,tem.t,tem.t)
 myplot$data[[3]]=tem.t
 
 myplot$data[[3]]$annotation = c(pval_as$pval,pval_as$pval,pval_as$pval)
 myplot$data[[3]]$group = c(pval_as$pval_name,pval_as$pval_name,pval_as$pval_name)
 myplot$data[[3]]$PANEL = c(rep(c(1,1, #nr3c1
                                  2,2,2, #nr3c2
-                                 3,3,3,3, #igfbp1a
+                                 3,3,3, #crhr1
                                  4,4,4, # fkbp5
                                  5,5,5,5, # tsc22d3
                                  6,6,6), #hsd11b2
@@ -144,23 +144,24 @@ myplot$data[[3]]$xend=c(xend,x,xend)
 
 y=c(150,170, #nr3c1
     57,57,65, #nr3c2
-    8,15,19,12, #igfbp1a
+    45,45,51, #crhr1
     380,600,520, #fkbp5
     230,360,420,300, #tsc22d3
     47.5,52,44) # hsd11b2
 myplot$data[[3]]$y = c(y,
                        y[1]-5,y[2]-5, #nr3c1
                        y[3]-2,y[4]-2,y[5]-2, #nr3c2
-                       y[6]-0.8,y[7]-0.8,y[8]-0.8,y[9]-0.8, #igfbp1a
-                       y[10]-20,y[11]-20,y[12]-20, #fkbp5
-                       y[13]-10,y[14]-10,y[15]-10,y[16]-10, #tsc22d3
-                       y[17]-(5/3),y[18]-(5/3),y[19]-(5/3),  # hsd11b2
+                       y[6]-2,y[7]-2,y[8]-2, #crhr1
+                       y[9]-20,y[10]-20,y[11]-20, #fkbp5
+                       y[12]-10,y[13]-10,y[14]-10,y[15]-10, #tsc22d3
+                       y[16]-(5/3),y[17]-(5/3),y[18]-(5/3),  # hsd11b2
+                       
                        y[1]-5,y[2]-5, #nr3c1
                        y[3]-2,y[4]-2,y[5]-2, #nr3c2
-                       y[6]-0.8,y[7]-0.8,y[8]-0.8,y[9]-0.8, #igfbp1a
-                       y[10]-20,y[11]-20,y[12]-20, #fkbp5
-                       y[13]-10,y[14]-10,y[15]-10,y[16]-10, #tsc22d3
-                       y[17]-(5/3),y[18]-(5/3),y[19]-(5/3)  # hsd11b2
+                       y[6]-2,y[7]-2,y[8]-2, #crhr1
+                       y[9]-20,y[10]-20,y[11]-20, #fkbp5
+                       y[12]-10,y[13]-10,y[14]-10,y[15]-10, #tsc22d3
+                       y[16]-(5/3),y[17]-(5/3),y[18]-(5/3) # hsd11b2
                        ) 
 
 myplot$data[[3]]$yend = c(y,y,y)
@@ -172,7 +173,7 @@ a=ggplot_gtable(myplot)
 plot(a)
 
 
-tiff("./figures/Fig4C_GC_genes.24x15.tiff", width = 20,height =15, units = "cm", res=1200, pointsize = 4, compression = "lzw" )
+tiff("./figures/Fig4C_GC_genes.24x15.tiff", width = 36,height =8, units = "cm", res=1200, pointsize = 4, compression = "lzw" )
 plot(a)
 dev.off() 
 
