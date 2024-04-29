@@ -1,8 +1,7 @@
-# tx_star-bPAC_brain; Time-series zebrafish whole brain mRNA-seq analyses.
+# Time-series zebrafish whole brain mRNA-seq and adult behavior analyses.
 
 This project for the data generation and analyses of the studies:
 
- 
 Min-Kyeung Choi, Alex Cook, Helen Eachus, et al. Developmental Glucocorticoid exposure in zebrafish alters adult behavior and primes differential expression of genes linked to human psychiatric disorders. bioRxiv 2023.02.13.528363; doi: https://doi.org/10.1101/2023.02.13.528363
 
 Eachus, H., Choi, MK., Tochwin, A. et al. Elevated glucocorticoid alters the developmental dynamics of hypothalamic neurogenesis in zebrafish. Commun Biol 7, 416 (2024). https://doi.org/10.1038/s42003-024-06060-5.
