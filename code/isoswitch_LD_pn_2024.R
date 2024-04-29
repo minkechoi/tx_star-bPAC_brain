@@ -76,7 +76,7 @@ switchAnalyzeRlist.pn <- importRdata(
   isoformCountMatrix   = LD.stringtieQuant$counts,
   isoformRepExpression = LD.stringtieQuant$abundance,
   designMatrix         = pos.neg.myDesign,
-  isoformExonAnnoation = "./tx_star_merged.gtf",
+  isoformExonAnnoation = "./data/tx_star_merged.gtf",
   #addAnnotatedORFs = 
   #isoformNtFasta       = 
   removeNonConvensionalChr = TRUE,
@@ -123,7 +123,7 @@ ft.SwitchList.pn <- isoformSwitchTestDEXSeq( ft.aSwitchList.pn,
                                              reduceToSwitchingGenes = TRUE )  
 
 ### If analysing (some) novel isoforms (else use CDS from ORF as explained in importRdata() )
-#ft.SwitchList.pn <- addORFfromGTF( ft.SwitchList.pn, pathToGTF ="./tx_star_merged.gtf")
+#ft.SwitchList.pn <- addORFfromGTF( ft.SwitchList.pn, pathToGTF ="./data/tx_star_merged.gtf")
 #ft.SwitchList.pn <- analyzeNovelIsoformORF( ft.SwitchList.pn,genomeObject = genome, analysisAllIsoformsWithoutORF = F)
 
 ### Extract Sequences
@@ -132,7 +132,7 @@ ft.SwitchList.pn <- isoformSwitchTestDEXSeq( ft.aSwitchList.pn,
 
 ft.SwitchList.pn <- extractSequence(
   ft.SwitchList.pn, 
-  pathToOutput = './',
+  pathToOutput = './outputs/',
   outputPrefix = "pn.LD",
   writeToFile=T # to avoid output when running this example data
 )
@@ -143,7 +143,7 @@ extractSwitchSummary(ft.SwitchList.pn)
 #save.image(file = "isoswitch_part1LD.RData")
 
 #### out_data
-
+#process followings depend on your path
 #CPC2  => run;  python3 ./CPC2_standalone-1.0.1/bin/CPC2.py -i ../pn.LD_nt.fasta -o ./pn.LD.cpc2.txt
 #pFAM  => run; cpan Moose => perl pfam/PfamScan/pfam_scan.pl -fasta ./pn.LD_AA.fasta -dir pfam/pfamdb/ > LD.pn.pfam.txt
 #SignalP => run in online,https://services.healthtech.dtu.dk/services/SignalP-5.0/;  short output; download summary
@@ -255,24 +255,17 @@ colnames(ft_txid.anno.pn)=c("ensembl_gene_id","isoform_id","external_transcript_
                             "transcript_is_canonical","strand","chromosome_name","transcript_start","transcript_end","transcription_start_site","transcript_length")
 
 as_switch_tb.pn=dplyr::full_join(x=as_switch_tb.pn,y=ft_txid.anno.pn, copy=T, by="isoform_id")
-write.csv(as_switch_tb.pn,"./output/as_switch_tb.pn.LD.csv")
+#write.csv(as_switch_tb.pn,"./outputs/as_switch_tb.pn.LD.csv")
 
-ft_as_switch_tb.pn = as_switch_tb.pn %>% filter(gene_switch_q_value <0.05) %>% filter(abs(dIF) > 0.3)
-
-ft_as_switch_tb.pn = ft_as_switch_tb.pn[c(which(ft_as_switch_tb.pn$gene_value_1 >=10|ft_as_switch_tb.pn$gene_value_2 >= 10)),]
-#apr
+#filtering
 ft_as_switch_tb.pn= as_switch_tb.pn %>% filter(gene_switch_q_value < 0.05) %>% filter(abs(dIF) > 0.4) 
 ft_as_switch_tb.pn = ft_as_switch_tb.pn[c(which(ft_as_switch_tb.pn$iso_value_1 >=10|ft_as_switch_tb.pn$iso_value_2 >= 10)),]
-
-unknown_ft = ft_as_switch_tb.pn$gene_name[c(grep("MSTRG",ft_as_switch_tb.pn$isoform_id))]
-
-ft_as_switch_tb.pn =  ft_as_switch_tb.pn[-c(which(ft_as_switch_tb.pn$gene_name %in%unknown_ft )),]
-d=duplicated(ft_as_switch_tb.pn$gene_name)
-ft_as_switch_tb.pn= ft_as_switch_tb.pn[c(which(ft_as_switch_tb.pn$gene_name %in% ft_as_switch_tb.pn[d,"gene_name"])),]
-write.csv(ft_as_switch_tb.pn,"./ft_as_switch_tb.pn.LD_apr.csv")
-
-#save
-save.image(file = "isoswitch_part1LD.pn.apr.RData")
+  #removing genes that have predicted novel isoforms 
+  unknown_ft = ft_as_switch_tb.pn$gene_name[c(grep("MSTRG",ft_as_switch_tb.pn$isoform_id))]
+  ft_as_switch_tb.pn =  ft_as_switch_tb.pn[-c(which(ft_as_switch_tb.pn$gene_name %in%unknown_ft )),]
+  d=duplicated(ft_as_switch_tb.pn$gene_name)
+  ft_as_switch_tb.pn= ft_as_switch_tb.pn[c(which(ft_as_switch_tb.pn$gene_name %in% ft_as_switch_tb.pn[d,"gene_name"])),]
+write.csv(ft_as_switch_tb.pn,"./outputs/ft_as_switch_tb.pn.LD_apr.csv")
 
 #### analyzeSwitchesConsequences
 
@@ -282,12 +275,10 @@ consequencesOfInterest <- c('intron_retention',
                             'domains_identified',
                             'ORF_seq_similarity')
 
-
-
 ft.SwitchList.pn <- analyzeSwitchConsequences(
   ft.SwitchList.pn,
   consequencesToAnalyze = consequencesOfInterest, 
-  dIFcutoff = 0.4, # very high cutoff for fast runtimes - you should use the default (0.1)
+  dIFcutoff = 0.4, # very high cutoff for fast runtimes - you should use the default (0.1) if you want
   showProgress=FALSE
 )
 
@@ -305,7 +296,6 @@ sigLD_gene_as_switch
 top.pn=extractTopSwitches(sigLD_gene_as_switch,dIFcutoff = 0.4,  n=100)
 gene.list = na.omit(unique(top.pn$gene_name))
 gene.list = top.pn$gene_name
-
 
 pdf(file = "./figures/top_sig_switchplot_pn.LD_apr_rev.pdf",   # The directory you want to save the file in
     width = 11.69, # The width of the plot in inches
