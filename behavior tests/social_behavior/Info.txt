@@ -1,0 +1,15 @@
+Folder contains files for Social behaviour in WT, B- and B+
+
+
+- Video file for each trial
+
+- Raw data from ethovision tracking for each trial
+
+- Tagging files show information for each trial (strain, date, etc..)
+
+- Script that was used for processing data
+
+- Processed data output file for each trial used to make figures
+
+- Dates for video files: 01.10.2020, 10.05.2020, 13.08.2020, 16.06.2020, 18.04.2020, 24.06.2020, 25.06.2020, 30.05.2020
+
