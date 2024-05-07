@@ -1,4 +1,4 @@
-Alexander Cook performed all behavioral tests and analyses under the supervision of Dr. Holger Beckmann in Mainz, Germany.
+Alexander Cook performed all behavioral tests and wrote scripts for analyses under the supervision of Dr. Holger Beckmann in Mainz, Germany.
 
 Four different behavioral domains were tested.
   1. Novel tank test
